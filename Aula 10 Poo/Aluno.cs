@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Aula_10_Poo
 {
-    class Aluno
+    internal class Aluno
     {
         public string Nome { get; set; }
         public string Curso { get; set; }
