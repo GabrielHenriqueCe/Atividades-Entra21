@@ -1,1 +1,32 @@
-﻿Console.WriteLine("Hello, World!");
+﻿using Aula_11_Poo;
+using System.Security.Cryptography.X509Certificates;
+class Program
+{
+    static void Main(string[] args)
+    {
+        bool sair = false;
+        while (!sair)
+        {
+            Console.WriteLine("==== ATIVIDADES POO ====");
+            Console.WriteLine("1 - Atividade 1 - Produto");
+            //Aguardando proximos exercicios
+            Console.WriteLine("12 - Sair\n");
+            Console.Write("Escolha a Atividade:");
+            string escolha = Console.ReadLine();
+            Console.WriteLine();
+            switch (escolha)
+            {
+                case "1":
+                    Produto.Atividade1();
+                    break;
+                case "12":
+                    sair = true;
+                    break;
+                default:
+                    Console.WriteLine("Escolha inválida. Por favor, digite um número entre 1 e 6.\n");
+                    break;
+            }
+        }
+
+    }
+}
