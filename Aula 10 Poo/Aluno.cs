@@ -50,7 +50,7 @@ namespace Aula_10_Poo
             Console.WriteLine();
         }
 
-        public static void Atividade2()
+        public static void Atividade5()
         {
             Aluno[] aluno = new Aluno[10];
             aluno[0] = new Aluno()

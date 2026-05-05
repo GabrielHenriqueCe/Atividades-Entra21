@@ -9,10 +9,11 @@ class Program
         {
             Console.WriteLine("==== ATIVIDADES POO ====");
             Console.WriteLine("1 - Atividade 1 - Carro");
-            Console.WriteLine("2 - Atividade 2 - Aluno + Extra");
+            Console.WriteLine("2 - Atividade 2 - Pessoa");
             Console.WriteLine("3 - Atividade 3 - Produto");
             Console.WriteLine("4 - Atividade 4 - Conta Bancária");
-            Console.WriteLine("5 - Sair\n");
+            Console.WriteLine("5 - Atividade 5 - Aluno");
+            Console.WriteLine("6 - Sair\n");
             Console.Write("Escolha a Atividade:");
             string escolha = Console.ReadLine();
             Console.WriteLine();
@@ -22,7 +23,7 @@ class Program
                     Carro.Atividade1();
                     break;
                 case "2":
-                    Aluno.Atividade2();
+                    Pessoa.Atividade2();
                     break;
                 case "3":
                     Produto.Atividade3();
@@ -31,10 +32,13 @@ class Program
                     ContaBancaria.Atividade4();
                     break;
                 case "5":
+                    Aluno.Atividade5();
+                    break;
+                    case "6":
                     sair = true;
                     break;
                 default:
-                    Console.WriteLine("Escolha inválida. Por favor, digite um número entre 1 e 5.\n");
+                    Console.WriteLine("Escolha inválida. Por favor, digite um número entre 1 e 6.\n");
                     break;
             }
         }
