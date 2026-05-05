@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Aula_10_Poo
 {
-    class ContaBancaria
+    internal class ContaBancaria
     {
         public decimal Valor { get; set; }
         public string Titular { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Aula_10_Poo
 {
-    class Carro
+    internal class Carro
     {
         public string Marca { get; set; }
         public string Modelo { get; set; }

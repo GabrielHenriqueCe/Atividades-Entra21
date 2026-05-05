@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Aula_11_Poo
 {
-    class Produto
+    internal class Produto
     {
         public decimal Valor { get; set; }
         public string Nome { get; set; }

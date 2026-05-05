@@ -9,6 +9,7 @@ class Program
         {
             Console.WriteLine("==== ATIVIDADES POO ====");
             Console.WriteLine("1 - Atividade 1 - Produto");
+            Console.WriteLine("2 - Atividade 2 - Pessoa");
             //Aguardando proximos exercicios
             Console.WriteLine("12 - Sair\n");
             Console.Write("Escolha a Atividade:");
@@ -18,6 +19,9 @@ class Program
             {
                 case "1":
                     Produto.Atividade1();
+                    break;
+                case "2":
+                    Pessoa.Atividade2(); 
                     break;
                 case "12":
                     sair = true;
