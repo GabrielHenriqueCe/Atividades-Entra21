@@ -46,6 +46,9 @@ class Program
                     case "7":
                     Produto.Atividade7();
                     break;
+                    case "8":
+                    Aluno.Atividade8();
+                    break;
                 case "12":
                     sair = true;
                     break;

@@ -33,6 +33,11 @@ namespace Aula_11_Poo
         public static void ListarProdutos(Produto[] produtos)
         {
             Console.WriteLine("\n==== LISTA DE PRODUTOS ====");
+            if (produtos[0] == null)
+            {
+                Console.WriteLine("Nenhum produto cadastrado.");
+                return;
+            }
             foreach (Produto produto in produtos)
             {
                 if (produto != null)
@@ -40,7 +45,6 @@ namespace Aula_11_Poo
                     Console.WriteLine($"Produto: {produto.Nome}, Valor: {produto.Valor}");
                 }
                 else                {
-                    Console.WriteLine("Nenhum produto cadastrado.");
                     break;
                 }
             }
