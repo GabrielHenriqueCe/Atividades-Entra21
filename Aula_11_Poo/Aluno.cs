@@ -7,12 +7,17 @@ namespace Aula_11_Poo
 {
     internal class Aluno
     {
+        #region Propriedades
+
         public string Nome { get; set; }
         public string Curso { get; set; }
         public byte Idade { get; set; }
         public float Nota { get; set; }
         public bool ehMaior { get; set; }
 
+        #endregion
+
+        #region Metodos
         public bool EhMaior()
         {
             if (Idade >= 18)
@@ -46,7 +51,7 @@ namespace Aula_11_Poo
         {
             Console.WriteLine($"Olá, meu nome é {Nome}, tenho {Idade} anos e estou cursando {Curso}.");
             EhMaior();
-            if(VerificarNota())
+            if (VerificarNota())
             {
                 Console.WriteLine($"O aluno foi aprovado com nota {Nota}.");
             }
@@ -57,37 +62,8 @@ namespace Aula_11_Poo
             Console.WriteLine();
         }
 
-        public static void Atividade3()
-        {
-            Aluno[] aluno = new Aluno[10];
-            aluno[0] = new Aluno()
-            {
-                Nome = "João",
-                Curso = "Engenharia de Software",
-                Nota = 8.5f,
-                Idade = 20
-            };
-            aluno[1] = new Aluno()
-            {
-                Nome = "Maria",
-                Curso = "Ciência da Computação",
-                Nota = 6.5f,
-                Idade = 17
-            };
-
-            for (int i = 0; i < aluno.Length; i++)
-            {
-                if (aluno[i] != null)
-                {
-                    aluno[i].ExibirInformacoes();
-                    Console.WriteLine();
-                }
-            }
-        }
-
         public static void CadastrarAluno(Aluno[] alunos, ref int contador)
         {
-
             if (contador == alunos.Length)
             {
                 Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -95,43 +71,40 @@ namespace Aula_11_Poo
                 Console.WriteLine("Limite de alunos cadastrados atingidos\n");
             }
             Console.WriteLine("==== CADASTRO DE ALUNOS ==== ");
-            for (int i = 0; i < alunos.Length; i++)
+
+            Console.Write("Digite o nome do aluno: ");
+            alunos[contador] = new Aluno();
+            alunos[contador].Nome = Console.ReadLine();
+            while (string.IsNullOrEmpty(alunos[contador].Nome))
             {
-                Console.Write("Digite o nome do aluno: ");
-                alunos[contador] = new Aluno();
+                Console.Write("O nome do aluno é obrigatório. Digite novamente: ");
                 alunos[contador].Nome = Console.ReadLine();
-                while (string.IsNullOrEmpty(alunos[contador].Nome))
-                {
-                    Console.Write("O nome do aluno é obrigatório. Digite novamente: ");
-                    alunos[contador].Nome = Console.ReadLine();
-                }
-                Console.Write("Digite a idade do aluno: ");
-                string idadeInput = Console.ReadLine();
-                byte idade;
-                while (!byte.TryParse(idadeInput, out idade) || idade <= 0)
-                {
-                    Console.Write("Idade inválida. Digite uma idade numérica positiva: ");
-                    idadeInput = Console.ReadLine();
-                }
-                alunos[contador].Idade = idade;
-                Console.Write("Digite a nota do aluno: ");
-                string notaInput = Console.ReadLine();
-                float nota;
-                while (!float.TryParse(notaInput, out nota) || nota < 0 || nota > 10)
-                {
-                    Console.Write("Nota inválida. Digite uma nota entre 0 e 10: ");
-                    notaInput = Console.ReadLine();
-                }
-                alunos[contador].Nota = nota;
-                contador++;
-                break;
             }
+            Console.Write("Digite a idade do aluno: ");
+            string idadeInput = Console.ReadLine();
+            byte idade;
+            while (!byte.TryParse(idadeInput, out idade) || idade <= 0)
+            {
+                Console.Write("Idade inválida. Digite uma idade numérica positiva: ");
+                idadeInput = Console.ReadLine();
+            }
+            alunos[contador].Idade = idade;
+            Console.Write("Digite a nota do aluno: ");
+            string notaInput = Console.ReadLine();
+            float nota;
+            while (!float.TryParse(notaInput, out nota) || nota < 0 || nota > 10)
+            {
+                Console.Write("Nota inválida. Digite uma nota entre 0 e 10: ");
+                notaInput = Console.ReadLine();
+            }
+            alunos[contador].Nota = nota;
+            contador++;
         }
 
         public static void ListarAlunos(Aluno[] alunos)
         {
             Console.WriteLine("\n==== LISTA DE ALUNOS ====");
-            if(alunos[0] == null)
+            if (alunos[0] == null)
             {
                 Console.WriteLine("Nenhum aluno cadastrado.");
                 return;
@@ -221,6 +194,36 @@ namespace Aula_11_Poo
             }
         }
 
+        #endregion
+
+        #region Atividades
+        public static void Atividade3()
+        {
+            Aluno[] aluno = new Aluno[10];
+            aluno[0] = new Aluno()
+            {
+                Nome = "João",
+                Curso = "Engenharia de Software",
+                Nota = 8.5f,
+                Idade = 20
+            };
+            aluno[1] = new Aluno()
+            {
+                Nome = "Maria",
+                Curso = "Ciência da Computação",
+                Nota = 6.5f,
+                Idade = 17
+            };
+
+            for (int i = 0; i < aluno.Length; i++)
+            {
+                if (aluno[i] != null)
+                {
+                    aluno[i].ExibirInformacoes();
+                    Console.WriteLine();
+                }
+            }
+        }
         public static void Atividade8()
         {
             Aluno[] alunos = new Aluno[3];
@@ -228,7 +231,7 @@ namespace Aula_11_Poo
             bool sair = false;
             while (!sair)
             {
-                Console.WriteLine("\n==== MENU DE ALUNOS ====");
+                Console.WriteLine("==== MENU DE ALUNOS ====");
                 Console.WriteLine("1 - Cadastrar aluno");
                 Console.WriteLine("2 - Listar alunos");
                 Console.WriteLine("3 - Sair");
@@ -237,10 +240,14 @@ namespace Aula_11_Poo
                 switch (entrada)
                 {
                     case "1":
+                        Console.Clear();
                         CadastrarAluno(alunos, ref contador);
+                        Program.PausaParaLer();
                         break;
                     case "2":
+                        Console.Clear();
                         ListarAlunos(alunos);
+                        Program.PausaParaLer();
                         break;
                     case "3":
                         sair = true;
@@ -259,7 +266,7 @@ namespace Aula_11_Poo
             bool sair = false;
             while (!sair)
             {
-                Console.WriteLine("\n==== MENU DE ALUNOS ====");
+                Console.WriteLine("==== MENU DE ALUNOS ====");
                 Console.WriteLine("1 - Cadastrar aluno");
                 Console.WriteLine("2 - Listar alunos");
                 Console.WriteLine("3 - Mostrar média");
@@ -271,19 +278,29 @@ namespace Aula_11_Poo
                 switch (entrada)
                 {
                     case "1":
+                        Console.Clear();
                         CadastrarAluno(alunos, ref contador);
+                        Program.PausaParaLer();
                         break;
                     case "2":
+                        Console.Clear();
                         ListarAlunos(alunos);
+                        Program.PausaParaLer();
                         break;
                     case "3":
+                        Console.Clear();
                         ExibirMediaTurma(alunos);
+                        Program.PausaParaLer();
                         break;
                     case "4":
+                        Console.Clear();
                         QuantidadeAprovados(alunos);
+                        Program.PausaParaLer();
                         break;
                     case "5":
+                        Console.Clear();
                         ListarAprovados(alunos);
+                        Program.PausaParaLer();
                         break;
                     case "6":
                         sair = true;
@@ -294,5 +311,6 @@ namespace Aula_11_Poo
                 }
             }
         }
+        #endregion
     }
 }

@@ -6,9 +6,14 @@ namespace Aula_11_Poo
 {
     internal class ContaBancaria
     {
+        #region Propriedades
+
         public decimal Valor { get; set; }
         public string Titular { get; set; }
 
+        #endregion
+
+        #region Metodos
         public void Depositar(string mensagem)
         {
             Console.WriteLine(mensagem);
@@ -35,17 +40,17 @@ namespace Aula_11_Poo
             Console.WriteLine(mensagem);
             string valorInput = Console.ReadLine();
             decimal valor = 0;
-            while (!decimal.TryParse(valorInput, out valor) || valor <= 0)
+            while (!decimal.TryParse(valorInput, out valor) || valor <= 0 || valor > Valor)
             {
-                if (valor <= 0)
-                {
-                    Console.WriteLine("Valor inválido. Digite um número positivo:");
-                }
-                else
+                if (!decimal.TryParse(valorInput, out valor))
                 {
                     Console.WriteLine("Entrada inválida. Digite um número válido:");
                 }
-                if (valor > Valor)
+                else if (valor <= 0)
+                {
+                    Console.WriteLine("Valor inválido. Digite um número positivo:");
+                }
+                else if (valor > Valor)
                 {
                     Console.WriteLine("Saldo insuficiente. Digite um valor menor ou igual ao saldo disponível:");
                 }
@@ -60,6 +65,31 @@ namespace Aula_11_Poo
             Console.WriteLine($"O titular {Titular} possui um saldo de {Valor:F2}.");
             Console.WriteLine();
         }
+
+        public static void CadastrarConta(ContaBancaria[] contas, ref int contador)
+        {
+            Console.WriteLine("==== CADASTRO DE CONTA BANCARIA ==== ");
+            if (contador >= contas.Length)
+            {
+                Console.WriteLine("Limite de contas atingido. Não é possível cadastrar mais contas.");
+                return;
+            }
+
+            Console.Write("Digite o nome do titular da conta: ");
+            contas[contador] = new ContaBancaria();
+            contas[contador].Titular = Console.ReadLine();
+            while (string.IsNullOrWhiteSpace(contas[contador].Titular))
+            {
+                Console.WriteLine("Nome do titular não pode ser vazio. Digite novamente:");
+                contas[contador].Titular = Console.ReadLine();
+            }
+            contas[contador].Valor = 0;
+            contador++;
+        }
+
+        #endregion
+
+        #region Atividades
 
         public static void Atividade4()
         {
@@ -81,12 +111,16 @@ namespace Aula_11_Poo
                 switch (opcao)
                 {
                     case "1":
+                        Console.Clear();
                         contas[0].Depositar($"Digite o valor a ser depositado na conta de {contas[0].Titular}:");
                         contas[0].ExibirInformacoes();
+                        Program.PausaParaLer();
                         break;
                     case "2":
+                        Console.WriteLine();
                         contas[0].Sacar($"Digite o valor a ser sacado da conta de {contas[0].Titular}:");
                         contas[0].ExibirInformacoes();
+                        Program.PausaParaLer();
                         break;
                     case "3":
                         sair = true;
@@ -95,28 +129,6 @@ namespace Aula_11_Poo
             }
         }
 
-        public static void CadastrarConta(ContaBancaria[] contas, ref int contador)
-        {
-            Console.WriteLine("==== CADASTRO DE CONTA BANCARIA ==== ");
-            if (contador >= contas.Length)
-            {
-                Console.WriteLine("Limite de contas atingido. Não é possível cadastrar mais contas.");
-                return;
-            }
-            for (int i = 0; i < contas.Length; i++)
-            {
-                Console.Write("Digite o nome do titular da conta: ");
-                contas[contador] = new ContaBancaria();
-                contas[contador].Titular = Console.ReadLine();
-                while (string.IsNullOrWhiteSpace(contas[contador].Titular))
-                {
-                    Console.WriteLine("Nome do titular não pode ser vazio. Digite novamente:");
-                    contas[contador].Titular = Console.ReadLine();
-                }
-                contas[contador].Valor = 0;
-                contador++;
-            }
-        }
         public static void Atividade9()
         {
             ContaBancaria[] contas = new ContaBancaria[1];
@@ -152,6 +164,8 @@ namespace Aula_11_Poo
                 }
             }
         }
+
+        #endregion
     }
 }
 

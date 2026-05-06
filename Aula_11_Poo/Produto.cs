@@ -6,28 +6,18 @@ namespace Aula_11_Poo
 {
     internal class Produto
     {
+        #region Propriedades
+
         public decimal Valor { get; set; }
         public string Nome { get; set; }
+
+        #endregion
+
+        #region Metodos
 
         public void ExibirInformacoes()
         {
             Console.WriteLine($"O produto {Nome} custa {Valor}.\n");
-        }
-
-        public static void Atividade1()
-        {
-            Produto[] produtos = 
-            {
-                new Produto() { Nome = "Notebook", Valor = 3000 },
-                new Produto() { Nome = "Smartphone", Valor = 8000 },
-                new Produto() { Nome = "Tablet", Valor = 1500 }
-            };
-
-
-            for (int i = 0; i < produtos.Length; i++)
-            {
-                produtos[i].ExibirInformacoes();
-            }
         }
 
         public static void ListarProdutos(Produto[] produtos)
@@ -44,13 +34,47 @@ namespace Aula_11_Poo
                 {
                     Console.WriteLine($"Produto: {produto.Nome}, Valor: {produto.Valor}");
                 }
-                else                
+                else
                 {
                     break;
                 }
             }
             Console.WriteLine();
         }
+
+        public static void ProdutoMaisCaro(Produto[] produtos)
+        {
+            Produto produtoMaisCaro = produtos[0];
+            for (int i = 1; i < produtos.Length; i++)
+            {
+                if (produtos[i].Valor > produtoMaisCaro.Valor)
+                {
+                    produtoMaisCaro = produtos[i];
+                }
+            }
+            Console.WriteLine($"\nO produto mais caro é: {produtoMaisCaro.Nome} com o valor de {produtoMaisCaro.Valor}.");
+        }
+
+        #endregion
+
+        #region Atividades
+
+        public static void Atividade1()
+        {
+            Produto[] produtos =
+            {
+                new Produto() { Nome = "Notebook", Valor = 3000 },
+                new Produto() { Nome = "Smartphone", Valor = 8000 },
+                new Produto() { Nome = "Tablet", Valor = 1500 }
+            };
+
+
+            for (int i = 0; i < produtos.Length; i++)
+            {
+                produtos[i].ExibirInformacoes();
+            }
+        }
+
         public static void Atividade5()
         {
             Produto[] produtos = new Produto[3];
@@ -67,7 +91,8 @@ namespace Aula_11_Poo
                 switch (entrada)
                 {
                     case "1":
-                        if(contador == produtos.Length)
+                        Console.Clear();
+                        if (contador == produtos.Length)
                         {
                             Console.OutputEncoding = System.Text.Encoding.UTF8;
                             Console.WriteLine("\n⚠️ ALERTA ⚠️");
@@ -75,31 +100,32 @@ namespace Aula_11_Poo
                             break;
                         }
                         Console.WriteLine("==== CADASTRO DE PRODUTOS ==== ");
-                        for (int i = 0; i < produtos.Length; i++)
+
+                        Console.Write("Digite o nome do produto: ");
+                        produtos[contador] = new Produto();
+                        produtos[contador].Nome = Console.ReadLine();
+                        while (string.IsNullOrEmpty(produtos[contador].Nome))
                         {
-                            Console.Write("Digite o nome do produto: ");
-                            produtos[contador] = new Produto();
+                            Console.Write("O nome do produto é obrigatório. Digite novamente: ");
                             produtos[contador].Nome = Console.ReadLine();
-                            while (string.IsNullOrEmpty(produtos[contador].Nome))
-                            {
-                                Console.Write("O nome do produto é obrigatório. Digite novamente: ");
-                                produtos[contador].Nome = Console.ReadLine();
-                            }
-                            Console.Write("Digite o valor do produto: ");
-                            string valorInput = Console.ReadLine();
-                            decimal valor;
-                            while (!decimal.TryParse(valorInput, out valor) || valor <= 0)
-                            {
-                                Console.Write("Valor inválido. Digite um valor numérico positivo: ");
-                                valorInput = Console.ReadLine();
-                            }
-                            produtos[contador].Valor = valor;
-                            contador++;
-                            break;
                         }
+                        Console.Write("Digite o valor do produto: ");
+                        string valorInput = Console.ReadLine();
+                        decimal valor;
+                        while (!decimal.TryParse(valorInput, out valor) || valor <= 0)
+                        {
+                            Console.Write("Valor inválido. Digite um valor numérico positivo: ");
+                            valorInput = Console.ReadLine();
+                        }
+                        produtos[contador].Valor = valor;
+                        contador++;
+
+                        Program.PausaParaLer();
                         break;
-                        case "2":
+                    case "2":
+                        Console.Clear();
                         ListarProdutos(produtos);
+                        Program.PausaParaLer();
                         break;
                     case "3":
                         sair = true;
@@ -111,18 +137,6 @@ namespace Aula_11_Poo
             }
         }
 
-        public static void ProdutoMaisCaro(Produto[] produtos)
-        {
-            Produto produtoMaisCaro = produtos[0];
-            for (int i = 1; i < produtos.Length; i++)
-            {
-                if (produtos[i].Valor > produtoMaisCaro.Valor)
-                {
-                    produtoMaisCaro = produtos[i];
-                }
-            }
-            Console.WriteLine($"\nO produto mais caro é: {produtoMaisCaro.Nome} com o valor de {produtoMaisCaro.Valor}.");
-        }
         public static void Atividade7()
         {
             Produto[] produtos =
@@ -144,12 +158,16 @@ namespace Aula_11_Poo
                 switch (entrada)
                 {
                     case "1":
+                        Console.Clear();
                         ListarProdutos(produtos);
                         sair = false;
+                        Program.PausaParaLer();
                         break;
                     case "2":
+                        Console.Clear();
                         ProdutoMaisCaro(produtos);
                         sair = false;
+                        Program.PausaParaLer();
                         break;
                     case "3":
                         sair = true;
@@ -159,7 +177,8 @@ namespace Aula_11_Poo
                         sair = false;
                         break;
                 }
-            }while (!sair);
+            } while (!sair);
         }
+        #endregion
     }
 }

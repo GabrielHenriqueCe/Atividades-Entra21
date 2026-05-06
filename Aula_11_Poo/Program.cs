@@ -1,12 +1,18 @@
 ﻿using Aula_11_Poo;
-using System.Security.Cryptography.X509Certificates;
 class Program
 {
+    public static void PausaParaLer()
+    {
+        Console.WriteLine("\nPressione ENTER para continuar...");
+        Console.ReadLine();
+        Console.Clear();
+    }
     static void Main(string[] args)
     {
         bool sair = false;
         while (!sair)
         {
+            Console.Clear();
             Console.WriteLine("==== ATIVIDADES POO ====");
             Console.WriteLine("O menu segue a seguinte ordem:");
             Console.WriteLine("Opção - Numero da atividade - Classe - Objetivo.\n");
@@ -28,37 +34,59 @@ class Program
             switch (escolha)
             {
                 case "1":
+                    Console.Clear();
                     Produto.Atividade1();
+                    PausaParaLer();
                     break;
                 case "2":
+                    Console.Clear();
                     Pessoa.Atividade2();
+                    PausaParaLer();
                     break;
                 case "3":
+                    Console.Clear();
                     Aluno.Atividade3();
+                    PausaParaLer();
                     break;
                 case "4":
+                    Console.Clear();
                     ContaBancaria.Atividade4();
+                    PausaParaLer();
                     break;
                 case "5":
+                    Console.Clear();
                     Produto.Atividade5();
+                    PausaParaLer();
                     break;
                 case "6":
+                    Console.Clear();
                     Pessoa.Atividade6();
+                    PausaParaLer();
                     break;
                 case "7":
+                    Console.Clear();
                     Produto.Atividade7();
+                    PausaParaLer();
                     break;
                 case "8":
+                    Console.Clear();
                     Aluno.Atividade8();
+                    PausaParaLer();
                     break;
                 case "9":
+                    Console.Clear();
                     ContaBancaria.Atividade9();
+                    PausaParaLer();
                     break;
                 case "10":
+                    Console.Clear();
                     Pessoa.Atividade10();
+                    PausaParaLer();
                     break;
                 case "11":
+                    Console.Clear();
                     Aluno.AtividadeDesafio();
+                    PausaParaLer();
                     break;
                 case "12":
                     sair = true;
