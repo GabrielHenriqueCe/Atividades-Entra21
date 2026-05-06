@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Aula_10_Poo
+namespace Aula_11_Poo
 {
     internal class Aluno
     {
@@ -32,12 +32,12 @@ namespace Aula_10_Poo
         {
             if (Nota >= 7)
             {
-                Console.WriteLine("O aluno foi aprovado.");
+                Console.WriteLine($"O aluno foi aprovado com a nota {Nota}.");
                 return true;
             }
             else
             {
-                Console.WriteLine("O aluno foi reprovado.");
+                Console.WriteLine($"O aluno foi reprovado com a nota {Nota}.");
                 return false;
             }
         }
@@ -50,7 +50,7 @@ namespace Aula_10_Poo
             Console.WriteLine();
         }
 
-        public static void Atividade5()
+        public static void Atividade3()
         {
             Aluno[] aluno = new Aluno[10];
             aluno[0] = new Aluno()
