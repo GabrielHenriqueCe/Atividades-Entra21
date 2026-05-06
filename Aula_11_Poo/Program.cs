@@ -17,6 +17,7 @@ class Program
             Console.WriteLine("5 - Atividade 5 - Produto - Uso de array com objetos");
             Console.WriteLine("6 - Atividade 6 - Pessoa - Busca simples");
             Console.WriteLine("7 - Atividade 7 - Produto - Comparação entre objetos");
+            Console.WriteLine("8 - Atividade 8 - Aluno - Repetição + Cadastro");
             //Aguardando proximos exercicios
             Console.WriteLine("12 - Sair\n");
             Console.Write("Escolha a Atividade:");
