@@ -19,7 +19,7 @@ class Program
             Console.WriteLine("7 - Atividade 7 - Produto - Comparação entre objetos");
             Console.WriteLine("8 - Atividade 8 - Aluno - Repetição + Cadastro");
             Console.WriteLine("9 - Atividade 9 - Conta Bancaria - Menu simples");
-            //Aguardando proximos exercicios
+            Console.WriteLine("10 - Atividade 10 - Pessoa - Combinar Tudo");
             Console.WriteLine("12 - Sair\n");
             Console.Write("Escolha a Atividade:");
             string escolha = Console.ReadLine();
@@ -53,11 +53,14 @@ class Program
                 case "9":
                     ContaBancaria.Atividade9();
                     break;
+                case "10":
+                    Pessoa.Atividade10();
+                    break;
                 case "12":
                     sair = true;
                     break;
                 default:
-                    Console.WriteLine("Escolha inválida. Por favor, digite um número entre 1 e 6.\n");
+                    Console.WriteLine("Escolha inválida. Por favor, digite um número entre 1 e 12.\n");
                     break;
             }
         }
