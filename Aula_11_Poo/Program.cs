@@ -20,6 +20,7 @@ class Program
             Console.WriteLine("8 - Atividade 8 - Aluno - Repetição + Cadastro");
             Console.WriteLine("9 - Atividade 9 - Conta Bancaria - Menu simples");
             Console.WriteLine("10 - Atividade 10 - Pessoa - Combinar Tudo");
+            Console.WriteLine("11 - Atividade 11 - Aluno - Simulação Real");
             Console.WriteLine("12 - Sair\n");
             Console.Write("Escolha a Atividade:");
             string escolha = Console.ReadLine();
@@ -55,6 +56,9 @@ class Program
                     break;
                 case "10":
                     Pessoa.Atividade10();
+                    break;
+                case "11":
+                    Aluno.AtividadeDesafio();
                     break;
                 case "12":
                     sair = true;

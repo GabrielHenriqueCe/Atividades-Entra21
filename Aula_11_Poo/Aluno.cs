@@ -33,12 +33,11 @@ namespace Aula_11_Poo
         {
             if (Nota >= 7)
             {
-                Console.WriteLine($"O aluno foi aprovado com a nota {Nota}.");
                 return true;
             }
             else
             {
-                Console.WriteLine($"O aluno foi reprovado com a nota {Nota}.");
+
                 return false;
             }
         }
@@ -47,7 +46,14 @@ namespace Aula_11_Poo
         {
             Console.WriteLine($"Olá, meu nome é {Nome}, tenho {Idade} anos e estou cursando {Curso}.");
             EhMaior();
-            VerificarNota();
+            if(VerificarNota())
+            {
+                Console.WriteLine($"O aluno foi aprovado com nota {Nota}.");
+            }
+            else
+            {
+                Console.WriteLine($"O aluno foi reprovado com nota {Nota}.");
+            }
             Console.WriteLine();
         }
 
@@ -134,16 +140,84 @@ namespace Aula_11_Poo
             {
                 if (alunos[i] != null)
                 {
-                    Console.WriteLine($"Aluno {i +1}:");
-                    Console.WriteLine($"Nome: {alunos[i].Nome}");
-                    Console.WriteLine($"Idade: {alunos[i].Idade}");
-                    Console.WriteLine($"Nota: {alunos[i].Nota}");
-                    Console.WriteLine();
+                    Console.WriteLine($"Aluno {i + 1}:  Nome: {alunos[i].Nome}   Idade: {alunos[i].Idade}   Nota: {alunos[i].Nota}");
                 }
                 else
                 {
                     break;
                 }
+            }
+        }
+
+        public static void ExibirMediaTurma(Aluno[] alunos)
+        {
+            float somaNotas = 0;
+            int quantidadeAlunos = 0;
+            for (int i = 0; i < alunos.Length; i++)
+            {
+                if (alunos[i] != null)
+                {
+                    somaNotas += alunos[i].Nota;
+                    quantidadeAlunos++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if (quantidadeAlunos > 0)
+            {
+                float media = somaNotas / quantidadeAlunos;
+                Console.WriteLine($"A média da turma é: {media:F2}");
+            }
+            else
+            {
+                Console.WriteLine("Nenhum aluno cadastrado para calcular a média.");
+            }
+        }
+
+        public static void QuantidadeAprovados(Aluno[] alunos)
+        {
+            int quantidadeAprovados = 0;
+            for (int i = 0; i < alunos.Length; i++)
+            {
+                if (alunos[i] != null)
+                {
+                    if (alunos[i].VerificarNota())
+                    {
+                        quantidadeAprovados++;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            Console.WriteLine($"Quantidade de alunos aprovados: {quantidadeAprovados}");
+        }
+
+        public static void ListarAprovados(Aluno[] alunos)
+        {
+            Console.WriteLine("\n==== ALUNOS APROVADOS ====");
+            bool temAprovados = false;
+            for (int i = 0; i < alunos.Length; i++)
+            {
+                if (alunos[i] != null)
+                {
+                    if (alunos[i].VerificarNota())
+                    {
+                        Console.WriteLine($"Aluno {i + 1}:  Nome: {alunos[i].Nome}   Idade: {alunos[i].Idade}   Nota: {alunos[i].Nota}");
+                        temAprovados = true;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            if (!temAprovados)
+            {
+                Console.WriteLine("Nenhum aluno aprovado.");
             }
         }
 
@@ -169,6 +243,49 @@ namespace Aula_11_Poo
                         ListarAlunos(alunos);
                         break;
                     case "3":
+                        sair = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida.");
+                        break;
+                }
+            }
+        }
+
+        public static void AtividadeDesafio()
+        {
+            Aluno[] alunos = new Aluno[3];
+            int contador = 0;
+            bool sair = false;
+            while (!sair)
+            {
+                Console.WriteLine("\n==== MENU DE ALUNOS ====");
+                Console.WriteLine("1 - Cadastrar aluno");
+                Console.WriteLine("2 - Listar alunos");
+                Console.WriteLine("3 - Mostrar média");
+                Console.WriteLine("4 - Quantidade de aprovados");
+                Console.WriteLine("5 - Listar aprovados");
+                Console.WriteLine("6 - Sair");
+                Console.Write("Escolha uma opção: ");
+                string entrada = Console.ReadLine();
+                switch (entrada)
+                {
+                    case "1":
+                        CadastrarAluno(alunos, ref contador);
+                        break;
+                    case "2":
+                        ListarAlunos(alunos);
+                        break;
+                    case "3":
+                        ExibirMediaTurma(alunos);
+                        break;
+                    case "4":
+                        QuantidadeAprovados(alunos);
+                        break;
+                    case "5":
+                        ListarAprovados(alunos);
+                        break;
+                    case "6":
                         sair = true;
                         break;
                     default:
