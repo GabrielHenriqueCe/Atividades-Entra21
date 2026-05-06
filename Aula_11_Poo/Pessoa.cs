@@ -49,15 +49,14 @@ namespace Aula_11_Poo
 
         public void ExibirInformacoes()
         {
-            Console.WriteLine($"Olá, meu nome é {Nome} e tenho {Idade} anos.");
+            Console.WriteLine($"\nOlá, meu nome é {Nome} e tenho {Idade} anos.\n");
             EhMaior();
             Console.WriteLine();
         }
 
         public static void Atividade2()
         {
-            Pessoa[] pessoa = new Pessoa[1];
-            pessoa[0] = new Pessoa();
+            Pessoa[] pessoa = { new Pessoa() };
 
             Console.Write("Digite o nome da pessoa: ");
             string nomeInput = Console.ReadLine();
@@ -81,6 +80,76 @@ namespace Aula_11_Poo
                     Console.WriteLine();
                 }
             }
+        }
+
+        public static void BuscarNome(Pessoa[] pessoas)
+        {
+            Console.Write("Digite o nome que deseja buscar: ");
+            string nomeInput = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(nomeInput))
+            {
+                Console.WriteLine("O nome não pode ser vazio. Por favor, digite um nome válido.");
+                return;
+            }
+            bool encontrado = pessoas.Any(p => p.Nome == nomeInput);
+            if (encontrado)
+            {
+                Console.WriteLine($"\nO nome {nomeInput} foi encontrado.\n");
+            }
+            else
+            {
+                Console.WriteLine($"\nO nome {nomeInput} não foi encontrado.\n");
+            }
+        }
+
+        public void ListarNomes(Pessoa[] pessoas)
+        {
+            Console.WriteLine("\n==== LISTA DE PESSOAS ====");
+            foreach (var pessoa in pessoas)
+            {
+                Console.WriteLine($"Nome: {pessoa.Nome}, Idade: {pessoa.Idade}");
+            }
+            Console.WriteLine();
+        }
+        public static void Atividade6()
+        {
+            Pessoa[] pessoas =
+            {
+                new Pessoa() { Nome = "Eduardo", Idade = 25 },
+                new Pessoa() { Nome = "Ana", Idade = 17 },
+                new Pessoa() { Nome = "Gabriel", Idade = 30 },
+                new Pessoa() { Nome = "Jose", Idade = 15 },
+                new Pessoa() { Nome = "Henrique", Idade = 22 }
+            };
+
+            bool sair;
+            do
+            {
+                Console.WriteLine("==== MENU ====");
+                Console.WriteLine("1. Listar Nomes");
+                Console.WriteLine("2. Buscar Nome");
+                Console.WriteLine("3. Sair");
+                Console.Write("Escolha uma opção: ");
+                string opcao = Console.ReadLine();
+                switch (opcao)
+                {
+                    case "1":
+                        new Pessoa().ListarNomes(pessoas);
+                        sair = false;
+                        break;
+                    case "2":
+                        BuscarNome(pessoas);
+                        sair = false;
+                        break;
+                    case "3":
+                        sair = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida.");
+                        sair = false;
+                        break;
+                }
+            } while (!sair);
         }
     }
 }
