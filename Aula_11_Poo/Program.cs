@@ -8,12 +8,15 @@ class Program
         while (!sair)
         {
             Console.WriteLine("==== ATIVIDADES POO ====");
-            Console.WriteLine("1 - Atividade 1 - Produto");
-            Console.WriteLine("2 - Atividade 2 - Pessoa");
-            Console.WriteLine("3 - Atividade 3 - Aluno");
-            Console.WriteLine("4 - Atividade 4 - Conta Bancaria");
-            Console.WriteLine("5 - Atividade 5 - Produto");
-            Console.WriteLine("6 - Atividade 6 - Pessoa");
+            Console.WriteLine("O menu segue a seguinte ordem:");
+            Console.WriteLine("Opção - Numero da atividade - Classe - Objetivo.\n");
+            Console.WriteLine("1 - Atividade 1 - Produto - Criar multiplos objetos");
+            Console.WriteLine("2 - Atividade 2 - Pessoa - Interação com o usuário");
+            Console.WriteLine("3 - Atividade 3 - Aluno - Lógica dentro da classe");
+            Console.WriteLine("4 - Atividade 4 - Conta Bancaria - Evoluir comportamento");
+            Console.WriteLine("5 - Atividade 5 - Produto - Uso de array com objetos");
+            Console.WriteLine("6 - Atividade 6 - Pessoa - Busca simples");
+            Console.WriteLine("7 - Atividade 7 - Produto - Comparação entre objetos");
             //Aguardando proximos exercicios
             Console.WriteLine("12 - Sair\n");
             Console.Write("Escolha a Atividade:");
