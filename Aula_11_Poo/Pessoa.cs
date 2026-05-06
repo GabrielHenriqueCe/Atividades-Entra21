@@ -6,27 +6,29 @@ namespace Aula_11_Poo
 {
     internal class Pessoa
     {
+        #region Propriedades
+
         public string Nome { get; set; }
         public int Idade { get; set; }
-        public bool ehMaior { get; set; }
 
+        #endregion
+
+        #region Metodos
         public bool EhMaior()
         {
             if (Idade >= 18)
             {
                 Console.WriteLine($"O {Nome} é maior de idade.");
-                ehMaior = true;
                 return true;
             }
             else
             {
                 Console.WriteLine($"O {Nome} é menor de idade.");
-                ehMaior = false;
                 return false;
             }
         }
 
-        public void FornecerIdade(Pessoa[] pessoa, string mensagem)
+        public void FornecerIdade(string mensagem)
         {
             Console.Write(mensagem);
             string idadeInput = Console.ReadLine();
@@ -47,7 +49,7 @@ namespace Aula_11_Poo
             Idade = idade;
         }
 
-        public void FornecerNome(Pessoa[] pessoa, string mensagem)
+        public void FornecerNome(string mensagem)
         {
             Console.Write(mensagem);
             string nomeInput = Console.ReadLine();
@@ -64,7 +66,6 @@ namespace Aula_11_Poo
         {
             Console.WriteLine($"\nOlá, meu nome é {Nome} e tenho {Idade} anos.\n");
             EhMaior();
-            Console.WriteLine();
         }
 
         public static void BuscarNome(Pessoa[] pessoa)
@@ -76,7 +77,7 @@ namespace Aula_11_Poo
                 Console.WriteLine("O nome não pode ser vazio. Por favor, digite um nome válido.");
                 return;
             }
-            bool encontrado = pessoa.Any(p => p != null && p.Nome == nomeInput);
+            bool encontrado = pessoa.Any(p => p != null && p.Nome.ToLower() == nomeInput.ToLower());
             if (encontrado)
             {
                 Console.WriteLine($"\nO nome {nomeInput} foi encontrado.\n");
@@ -122,19 +123,22 @@ namespace Aula_11_Poo
             Console.WriteLine("\n==== CADASTRO DE PESSOA ==== ");
 
             Pessoa novaPessoa = new Pessoa();
-            novaPessoa.FornecerNome(pessoa, "Digite o nome da pessoa: ");
-            novaPessoa.FornecerIdade(pessoa, "Digite a idade da pessoa: ");
+            novaPessoa.FornecerNome("Digite o nome da pessoa: ");
+            novaPessoa.FornecerIdade("Digite a idade da pessoa: ");
             pessoa[contador] = novaPessoa;
             contador++;
         }
 
+        #endregion
+
+        #region Atividades
         public static void Atividade2()
         {
             Pessoa[] pessoa = { new Pessoa() };
 
-            pessoa[0].FornecerNome(pessoa, "Digite o nome da pessoa: ");
+            pessoa[0].FornecerNome("Digite o nome da pessoa: ");
 
-            pessoa[0].FornecerIdade(pessoa, "Digite a idade da pessoa: ");
+            pessoa[0].FornecerIdade("Digite a idade da pessoa: ");
 
 
             for (int i = 0; i < pessoa.Length; i++)
@@ -170,12 +174,16 @@ namespace Aula_11_Poo
                 switch (opcao)
                 {
                     case "1":
+                        Console.Clear();
                         ListarNomes(pessoa);
                         sair = false;
+                        Program.PausaParaLer();
                         break;
                     case "2":
+                        Console.Clear();
                         BuscarNome(pessoa);
                         sair = false;
+                        Program.PausaParaLer();
                         break;
                     case "3":
                         sair = true;
@@ -205,16 +213,22 @@ namespace Aula_11_Poo
                 switch (opcao)
                 {
                     case "1":
+                        Console.Clear();
                         CadastrarPessoa(pessoa, ref contador);
                         sair = false;
+                        Program.PausaParaLer();
                         break;
                     case "2":
+                        Console.Clear();
                         ListarNomes(pessoa);
                         sair = false;
+                        Program.PausaParaLer();
                         break;
                     case "3":
+                        Console.Clear();
                         BuscarNome(pessoa);
                         sair = false;
+                        Program.PausaParaLer();
                         break;
                     case "4":
                         sair = true;
@@ -226,5 +240,6 @@ namespace Aula_11_Poo
                 }
             } while (!sair);
         }
+        #endregion
     }
 }
