@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32.SafeHandles;
+using System;
 using System.Collections.Generic;
 using System.Text;
 namespace Aula_11_Poo
@@ -10,8 +11,7 @@ namespace Aula_11_Poo
 
         public void ExibirInformacoes()
         {
-            Console.WriteLine($"O produto {Nome} custa {Valor}.");
-            Console.WriteLine();
+            Console.WriteLine($"O produto {Nome} custa {Valor}.\n");
         }
 
         public static void Atividade1()
@@ -30,6 +30,22 @@ namespace Aula_11_Poo
             }
         }
 
+        public static void ListarProdutos(Produto[] produtos)
+        {
+            Console.WriteLine("\n==== LISTA DE PRODUTOS ====");
+            foreach (Produto produto in produtos)
+            {
+                if (produto != null)
+                {
+                    Console.WriteLine($"Produto: {produto.Nome}, Valor: {produto.Valor}");
+                }
+                else                {
+                    Console.WriteLine("Nenhum produto cadastrado.");
+                    break;
+                }
+            }
+            Console.WriteLine();
+        }
         public static void Atividade5()
         {
             Produto[] produtos = new Produto[3];
@@ -37,7 +53,7 @@ namespace Aula_11_Poo
             bool sair = false;
             while (!sair)
             {
-                Console.WriteLine("==== MENU DE PRODUTOS ====");
+                Console.WriteLine("\n==== MENU DE PRODUTOS ====");
                 Console.WriteLine("1 - Cadastrar produto");
                 Console.WriteLine("2 - Listar produtos");
                 Console.WriteLine("3 - Sair");
@@ -78,11 +94,7 @@ namespace Aula_11_Poo
                         }
                         break;
                         case "2":
-                        Console.WriteLine("==== LISTA DE PRODUTOS ====");
-                        for (int i = 0; i < contador; i++)
-                        {
-                            produtos[i].ExibirInformacoes();
-                        }
+                        ListarProdutos(produtos);
                         break;
                     case "3":
                         sair = true;
@@ -92,6 +104,57 @@ namespace Aula_11_Poo
                         break;
                 }
             }
+        }
+
+        public static void ProdutoMaisCaro(Produto[] produtos)
+        {
+            Produto produtoMaisCaro = produtos[0];
+            for (int i = 1; i < produtos.Length; i++)
+            {
+                if (produtos[i].Valor > produtoMaisCaro.Valor)
+                {
+                    produtoMaisCaro = produtos[i];
+                }
+            }
+            Console.WriteLine($"\nO produto mais caro é: {produtoMaisCaro.Nome} com o valor de {produtoMaisCaro.Valor}.");
+        }
+        public static void Atividade7()
+        {
+            Produto[] produtos =
+{
+                new Produto() { Nome = "Notebook", Valor = 3000 },
+                new Produto() { Nome = "Smartphone", Valor = 8000 },
+                new Produto() { Nome = "Tablet", Valor = 1500 }
+            };
+
+            bool sair;
+            do
+            {
+                Console.WriteLine("\n==== MENU DE PRODUTOS ====");
+                Console.WriteLine("1 - Listar produtos");
+                Console.WriteLine("2 - Exibir produto mais caro");
+                Console.WriteLine("3 - Sair");
+                Console.Write("Escolha uma opção: ");
+                string entrada = Console.ReadLine();
+                switch (entrada)
+                {
+                    case "1":
+                        ListarProdutos(produtos);
+                        sair = false;
+                        break;
+                    case "2":
+                        ProdutoMaisCaro(produtos);
+                        sair = false;
+                        break;
+                    case "3":
+                        sair = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida.");
+                        sair = false;
+                        break;
+                }
+            }while (!sair);
         }
     }
 }
