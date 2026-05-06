@@ -13,6 +13,7 @@ class Program
             Console.WriteLine("3 - Atividade 3 - Aluno");
             Console.WriteLine("4 - Atividade 4 - Conta Bancaria");
             Console.WriteLine("5 - Atividade 5 - Produto");
+            Console.WriteLine("6 - Atividade 6 - Pessoa");
             //Aguardando proximos exercicios
             Console.WriteLine("12 - Sair\n");
             Console.Write("Escolha a Atividade:");
@@ -34,6 +35,9 @@ class Program
                     break;
                     case "5":
                     Produto.Atividade5();
+                    break;
+                    case "6":
+                    Pessoa.Atividade6();
                     break;
                 case "12":
                     sair = true;
