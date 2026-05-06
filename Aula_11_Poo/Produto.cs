@@ -16,7 +16,7 @@ namespace Aula_11_Poo
 
         public static void Atividade1()
         {
-            Produto[] produtos = new Produto[]
+            Produto[] produtos = 
             {
                 new Produto() { Nome = "Notebook", Valor = 3000 },
                 new Produto() { Nome = "Smartphone", Valor = 8000 },
