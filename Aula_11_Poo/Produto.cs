@@ -44,7 +44,8 @@ namespace Aula_11_Poo
                 {
                     Console.WriteLine($"Produto: {produto.Nome}, Valor: {produto.Valor}");
                 }
-                else                {
+                else                
+                {
                     break;
                 }
             }

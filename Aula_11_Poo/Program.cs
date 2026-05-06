@@ -18,6 +18,7 @@ class Program
             Console.WriteLine("6 - Atividade 6 - Pessoa - Busca simples");
             Console.WriteLine("7 - Atividade 7 - Produto - Comparação entre objetos");
             Console.WriteLine("8 - Atividade 8 - Aluno - Repetição + Cadastro");
+            Console.WriteLine("9 - Atividade 9 - Conta Bancaria - Menu simples");
             //Aguardando proximos exercicios
             Console.WriteLine("12 - Sair\n");
             Console.Write("Escolha a Atividade:");
@@ -48,6 +49,9 @@ class Program
                     break;
                 case "8":
                     Aluno.Atividade8();
+                    break;
+                case "9":
+                    ContaBancaria.Atividade9();
                     break;
                 case "12":
                     sair = true;
