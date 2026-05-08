@@ -3,4 +3,5 @@
     <Project Path="Aula 10 Poo/Aula_10_Poo.csproj" />
     <Project Path="Aula_11_Poo/Aula_11_Poo.csproj" Id="41c264be-95db-4424-aa36-a3c509d37105" />
   </Folder>
+  <Project Path="Utils/Utils.csproj" Id="b87c6318-52d9-4b9b-8cd1-cb4f3dcdb58a" />
 </Solution>
