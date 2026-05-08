@@ -1,16 +1,6 @@
 ﻿using Aula_11_Poo;
 using System.Drawing;
-
-#region Metodos Auxiliares
-
-void PausaParaLer()
-{
-    Console.WriteLine("\nPressione ENTER para continuar...");
-    Console.ReadLine();
-    Console.Clear();
-}
-
-#endregion
+using Utilities;
 
 #region Metodos ContaBancaria
 
@@ -23,14 +13,8 @@ void CadastrarConta(ContaBancaria[] contas, ref int contador)
         return;
     }
 
-    Console.Write("Digite o nome do titular da conta: ");
     contas[contador] = new ContaBancaria();
-    contas[contador].Titular = Console.ReadLine();
-    while (string.IsNullOrWhiteSpace(contas[contador].Titular))
-    {
-        Console.WriteLine("Nome do titular não pode ser vazio. Digite novamente:");
-        contas[contador].Titular = Console.ReadLine();
-    }
+    contas[contador].Titular = Utils.LerStringObrigatoria("Digite o nome do titular da conta: ", "O nome do titular é obrigatório. Digite novamente: ");
     contas[contador].Valor = 0;
     contador++;
 }
@@ -43,38 +27,15 @@ void CadastrarAluno(Aluno[] alunos, ref int contador)
 {
     if (contador == alunos.Length)
     {
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Console.WriteLine("\n⚠️ ALERTA ⚠️");
-        Console.WriteLine("Limite de alunos cadastrados atingidos\n");
+        Utils.AlertaLimiteCadastro("Limite de alunos cadastrados atingido");
+        return;
     }
     Console.WriteLine("==== CADASTRO DE ALUNOS ==== ");
 
-    Console.Write("Digite o nome do aluno: ");
     alunos[contador] = new Aluno();
-    alunos[contador].Nome = Console.ReadLine();
-    while (string.IsNullOrEmpty(alunos[contador].Nome))
-    {
-        Console.Write("O nome do aluno é obrigatório. Digite novamente: ");
-        alunos[contador].Nome = Console.ReadLine();
-    }
-    Console.Write("Digite a idade do aluno: ");
-    string idadeInput = Console.ReadLine();
-    byte idade;
-    while (!byte.TryParse(idadeInput, out idade) || idade <= 0)
-    {
-        Console.Write("Idade inválida. Digite uma idade numérica positiva: ");
-        idadeInput = Console.ReadLine();
-    }
-    alunos[contador].Idade = idade;
-    Console.Write("Digite a nota do aluno: ");
-    string notaInput = Console.ReadLine();
-    float nota;
-    while (!float.TryParse(notaInput, out nota) || nota < 0 || nota > 10)
-    {
-        Console.Write("Nota inválida. Digite uma nota entre 0 e 10: ");
-        notaInput = Console.ReadLine();
-    }
-    alunos[contador].Nota = nota;
+    alunos[contador].Nome = Utils.LerStringObrigatoria("Digite o nome do aluno: ", "O nome do aluno é obrigatório. Digite novamente: ");
+    alunos[contador].Idade = Utils.LerByte("Digite a idade do aluno: ", "Idade inválida. Digite uma idade numérica positiva: ", 0, byte.MaxValue);
+    alunos[contador].Nota = Utils.LerFloat("Digite a nota do aluno: ", "Nota inválida. Digite uma nota entre 0 e 10: ", 0, 10);
     contador++;
 }
 
@@ -177,13 +138,7 @@ void ListarAprovados(Aluno[] alunos)
 
 void BuscarNome(Pessoa[] pessoa)
 {
-    Console.Write("Digite o nome que deseja buscar: ");
-    string nomeInput = Console.ReadLine();
-    if (string.IsNullOrWhiteSpace(nomeInput))
-    {
-        Console.WriteLine("O nome não pode ser vazio. Por favor, digite um nome válido.");
-        return;
-    }
+    string nomeInput = Utils.LerStringObrigatoria("Digite o nome que deseja buscar: ", "O nome é obrigatório. Digite novamente: ");
     bool encontrado = pessoa.Any(p => p != null && p.Nome.ToLower() == nomeInput.ToLower());
     if (encontrado)
     {
@@ -221,18 +176,15 @@ void CadastrarPessoa(Pessoa[] pessoa, ref int contador)
 {
     if (contador == pessoa.Length)
     {
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Console.WriteLine("\n⚠️ ALERTA ⚠️");
-        Console.WriteLine("Limite de pessoas cadastradas atingidos\n");
+        Utils.AlertaLimiteCadastro("Limite de pessoas cadastradas atingido");
         return;
     }
 
     Console.WriteLine("\n==== CADASTRO DE PESSOA ==== ");
 
     Pessoa novaPessoa = new Pessoa();
-    novaPessoa.FornecerNome("Digite o nome da pessoa: ");
-    novaPessoa.FornecerIdade("Digite a idade da pessoa: ");
-    pessoa[contador] = novaPessoa;
+    pessoa[contador].Nome = Utils.LerStringObrigatoria("Digite o nome da pessoa: ", "O nome da pessoa é obrigatório. Digite novamente: ");
+    pessoa[contador].Idade = Utils.LerByte("Digite a idade da pessoa: ", "Idade inválida. Digite uma idade numérica positiva: ", 0, byte.MaxValue);
     contador++;
 }
 
@@ -275,6 +227,21 @@ void ProdutoMaisCaro(Produto[] produtos)
     Console.WriteLine($"\nO produto mais caro é: {produtoMaisCaro.Nome} com o valor de {produtoMaisCaro.Valor}.");
 }
 
+void CadastrarProduto(Produto[] produtos, ref int contador)
+{
+    if (contador == produtos.Length)
+    {
+        Utils.AlertaLimiteCadastro("Limite de produtos cadastrados atingido");
+        return;
+    }
+    Console.WriteLine("==== CADASTRO DE PRODUTOS ==== ");
+
+    produtos[contador] = new Produto();
+    produtos[contador].Nome = Utils.LerStringObrigatoria("Digite o nome do produto: ", "O nome do produto é obrigatório. Digite novamente: ");
+    produtos[contador].Valor = Utils.LerDecimal("Digite o valor do produto: ", "Valor inválido. Digite um valor numérico positivo: ", 0, decimal.MaxValue);
+    contador++;
+}
+
 #endregion
 
 #region Atividades
@@ -299,9 +266,9 @@ void Atividade2()
 {
     Pessoa[] pessoa = { new Pessoa() };
 
-    pessoa[0].FornecerNome("Digite o nome da pessoa: ");
+    pessoa[0].Nome = Utils.LerStringObrigatoria("Digite o nome da pessoa: ", "O nome é obrigatório. Digite novamente: ");
 
-    pessoa[0].FornecerIdade("Digite a idade da pessoa: ");
+    pessoa[0].Idade = Utils.LerByte("Digite a idade da pessoa: ", "Idade inválida. Digite uma idade numérica positiva: ", 0, byte.MaxValue);
 
 
     for (int i = 0; i < pessoa.Length; i++)
@@ -364,13 +331,13 @@ void Atividade4()
                 Console.Clear();
                 contas[0].Depositar($"Digite o valor a ser depositado na conta de {contas[0].Titular}:");
                 contas[0].ExibirInformacoes();
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "2":
                 Console.WriteLine();
                 contas[0].Sacar($"Digite o valor a ser sacado da conta de {contas[0].Titular}:");
                 contas[0].ExibirInformacoes();
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "3":
                 sair = true;
@@ -396,40 +363,13 @@ void Atividade5()
         {
             case "1":
                 Console.Clear();
-                if (contador == produtos.Length)
-                {
-                    Console.OutputEncoding = System.Text.Encoding.UTF8;
-                    Console.WriteLine("\n⚠️ ALERTA ⚠️");
-                    Console.WriteLine("Limite de produtos cadastrados atingidos\n");
-                    break;
-                }
-                Console.WriteLine("==== CADASTRO DE PRODUTOS ==== ");
-
-                Console.Write("Digite o nome do produto: ");
-                produtos[contador] = new Produto();
-                produtos[contador].Nome = Console.ReadLine();
-                while (string.IsNullOrEmpty(produtos[contador].Nome))
-                {
-                    Console.Write("O nome do produto é obrigatório. Digite novamente: ");
-                    produtos[contador].Nome = Console.ReadLine();
-                }
-                Console.Write("Digite o valor do produto: ");
-                string valorInput = Console.ReadLine();
-                decimal valor;
-                while (!decimal.TryParse(valorInput, out valor) || valor <= 0)
-                {
-                    Console.Write("Valor inválido. Digite um valor numérico positivo: ");
-                    valorInput = Console.ReadLine();
-                }
-                produtos[contador].Valor = valor;
-                contador++;
-
-                PausaParaLer();
+                CadastrarProduto(produtos, ref contador);
+                Utils.PausaParaLer();
                 break;
             case "2":
                 Console.Clear();
                 ListarProdutos(produtos);
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "3":
                 sair = true;
@@ -445,12 +385,12 @@ void Atividade6()
 {
     Pessoa[] pessoa =
     {
-                new Pessoa() { Nome = "Eduardo", Idade = 25 },
-                new Pessoa() { Nome = "Ana", Idade = 17 },
-                new Pessoa() { Nome = "Gabriel", Idade = 30 },
-                new Pessoa() { Nome = "Jose", Idade = 15 },
-                new Pessoa() { Nome = "Henrique", Idade = 22 }
-            };
+        new Pessoa() { Nome = "Eduardo", Idade = 25 },
+        new Pessoa() { Nome = "Ana", Idade = 17 },
+        new Pessoa() { Nome = "Gabriel", Idade = 30 },
+        new Pessoa() { Nome = "Jose", Idade = 15 },
+        new Pessoa() { Nome = "Henrique", Idade = 22 }
+    };
 
     bool sair;
     do
@@ -467,13 +407,13 @@ void Atividade6()
                 Console.Clear();
                 ListarNomes(pessoa);
                 sair = false;
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "2":
                 Console.Clear();
                 BuscarNome(pessoa);
                 sair = false;
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "3":
                 sair = true;
@@ -510,13 +450,13 @@ void Atividade7()
                 Console.Clear();
                 ListarProdutos(produtos);
                 sair = false;
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "2":
                 Console.Clear();
                 ProdutoMaisCaro(produtos);
                 sair = false;
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "3":
                 sair = true;
@@ -547,12 +487,12 @@ void Atividade8()
             case "1":
                 Console.Clear();
                 CadastrarAluno(alunos, ref contador);
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "2":
                 Console.Clear();
                 ListarAlunos(alunos);
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "3":
                 sair = true;
@@ -584,24 +524,24 @@ void Atividade9()
             case "1":
                 Console.Clear();
                 CadastrarConta(contas, ref contador);
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "2":
                 Console.Clear();
                 contas[indiceConta].Depositar($"Digite o valor a ser depositado na conta de {contas[indiceConta].Titular}:");
                 contas[indiceConta].ExibirInformacoes();
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "3":
                 Console.Clear();
                 contas[indiceConta].Sacar($"Digite o valor a ser sacado da conta de {contas[indiceConta].Titular}:");
                 contas[indiceConta].ExibirInformacoes();
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "4":
                 Console.Clear();
                 contas[indiceConta].ExibirInformacoes();
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "5":
                 sair = true;
@@ -630,19 +570,19 @@ void Atividade10()
                 Console.Clear();
                 CadastrarPessoa(pessoa, ref contador);
                 sair = false;
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "2":
                 Console.Clear();
                 ListarNomes(pessoa);
                 sair = false;
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "3":
                 Console.Clear();
                 BuscarNome(pessoa);
                 sair = false;
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "4":
                 sair = true;
@@ -676,28 +616,26 @@ void AtividadeDesafio()
             case "1":
                 Console.Clear();
                 CadastrarAluno(alunos, ref contador);
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "2":
                 Console.Clear();
                 ListarAlunos(alunos);
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "3":
                 Console.Clear();
                 ExibirMediaTurma(alunos);
-                PausaParaLer();
+                Utils.PausaParaLer();
                 break;
             case "4":
                 Console.Clear();
                 QuantidadeAprovados(alunos);
-                PausaParaLer();
-                break;
+                Utils.PausaParaLer(); break;
             case "5":
                 Console.Clear();
                 ListarAprovados(alunos);
-                PausaParaLer();
-                break;
+                Utils.PausaParaLer(); break;
             case "6":
                 sair = true;
                 break;
@@ -715,7 +653,6 @@ void AtividadeDesafio()
 bool sair = false;
 while (!sair)
 {
-    Console.Clear();
     Console.WriteLine("==== ATIVIDADES POO ====");
     Console.WriteLine("O menu segue a seguinte ordem:");
     Console.WriteLine("Opção - Numero da atividade - Classe - Objetivo.\n");
@@ -739,58 +676,47 @@ while (!sair)
         case "1":
             Console.Clear();
             Atividade1();
-            PausaParaLer();
-                    break;
+            Utils.PausaParaLer(); break;
         case "2":
             Console.Clear();
             Atividade2();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "3":
             Console.Clear();
             Atividade3();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "4":
             Console.Clear();
             Atividade4();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "5":
             Console.Clear();
             Atividade5();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "6":
             Console.Clear();
             Atividade6();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "7":
             Console.Clear();
             Atividade7();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "8":
             Console.Clear();
             Atividade8();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "9":
             Console.Clear();
             Atividade9();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "10":
             Console.Clear();
             Atividade10();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "11":
             Console.Clear();
             AtividadeDesafio();
-            PausaParaLer();
-            break;
+            Utils.PausaParaLer(); break;
         case "12":
             sair = true;
             break;
