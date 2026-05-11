@@ -11,6 +11,7 @@ namespace Aula_12_Poo
         #region Propriedades
         private string _curso { get; set; }
         private float _nota { get; set; }
+
         public string Curso
         {
             get { return _curso; }
@@ -42,12 +43,7 @@ namespace Aula_12_Poo
             }
         }
 
-
-        public Aluno(string nome, int idade, string curso, float nota) : base(nome, idade) 
-        {
-            Curso = curso;
-            Nota = nota;
-        }
+        public Aluno() : base() { }
 
         #endregion
 

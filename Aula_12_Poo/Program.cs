@@ -17,7 +17,7 @@ void Atividade1()
 
 void Atividade2()
 {
-    Pessoa pessoa = new Pessoa("Gabriel", 30);
+    Pessoa pessoa = new Pessoa() { Nome = "Gabriel", Idade = 30 };
 
     bool idadeValida = false;
     while (!idadeValida)
@@ -71,7 +71,7 @@ void Atividade3()
 
 void Atividade4()
 {
-    Aluno aluno = new Aluno("Gabriel", 30, "Engenharia de Software", 0);
+    Aluno aluno = new Aluno() { Nome = "Gabriel", Idade = 30, Curso = "Engenharia de Software", Nota = 0 };
 
     bool notaValida = false;
     while (!notaValida)
@@ -122,6 +122,41 @@ void Atividade5()
     }
 }
 
+void AtividadeDesafio()
+{
+    List<Usuario> usuarios = new List<Usuario>();
+    Usuario usuario = new Usuario();
+
+    bool sairAtDesafio = false;
+    while (!sairAtDesafio)
+    {
+        ContaExercicioDesafio? opcaoDesafio = SelecionarOpcao<ContaExercicioDesafio>();
+        switch (opcaoDesafio)
+        {
+            case ContaExercicioDesafio.Cadastrar:
+                Console.Clear();
+                usuario.Cadastrar();
+                usuarios.Add(usuario);
+                usuario.InformarSituacao(usuarios[^1]);
+                PausaParaLer();
+                break;
+            case ContaExercicioDesafio.Listar:
+                Console.Clear();
+                usuario.Listar(usuarios);
+                PausaParaLer();
+                break;
+            case ContaExercicioDesafio.Sair:
+                Console.WriteLine("\nVoltando ao menu principal...");
+                sairAtDesafio = true;
+                break;
+            case null:
+                Console.WriteLine("\nVoltando ao menu principal...");
+                sairAtDesafio = true;
+                break;
+        }
+    }
+}
+
 #endregion
 
 #region Programa Principal
@@ -155,6 +190,11 @@ while(!sair)
         case Exercicios.Exercicio5:
             Console.Clear();
             Atividade5();
+            PausaParaLer();
+            break;
+        case Exercicios.ExercicioDesafio:
+            Console.Clear();
+            AtividadeDesafio();
             PausaParaLer();
             break;
         case Exercicios.Sair:
