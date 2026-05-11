@@ -19,6 +19,9 @@ namespace Aula_12_Poo
         [Description("Exercício 4 - Classe Aluno - Utilizar property")]
         Exercicio4,
 
+        [Description("Exercício 5 - Classe Carro - Acelerar e Frear")]
+        Exercicio5,
+
         [Description("Exercício Extra - Desafio")]
         ExercicioExtra,
 

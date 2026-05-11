@@ -166,10 +166,9 @@ namespace Utilities
             return atual;
         }
 
-        public static string SelecionarComCursor(string[] opcoes, bool aceitaNumericos = true, bool aceitaHorizontal = false)
+        public static string? SelecionarComCursor(string[] opcoes, out int indice, int inicial = 0, bool aceitaNumericos = true, bool aceitaHorizontal = false)
         {
-            int selecionado = 0;
-
+            int selecionado = inicial;
             while (true)
             {
                 Console.Clear();
@@ -184,8 +183,17 @@ namespace Utilities
 
                 ConsoleKeyInfo tecla = Console.ReadKey(true);
 
+                if (tecla.Key == ConsoleKey.Escape)
+                {
+                    indice = selecionado;
+                    return null;
+                }
+
                 if (tecla.Key == ConsoleKey.Enter)
-                    break;
+                {
+                    indice = selecionado;
+                    return opcoes[selecionado];
+                }
 
                 selecionado = SelecionarComCursorAux(
                     selecionado,
@@ -196,8 +204,6 @@ namespace Utilities
                     aceitaHorizontal
                 );
             }
-
-            return opcoes[selecionado];
         }
 
         public static T? SelecionarOpcao<T>(bool aceitaNumericos = true, bool aceitaHorizontal = false) where T : struct, Enum
