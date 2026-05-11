@@ -35,6 +35,40 @@ void Atividade2()
 
     pessoa.ExibirInformacoes();
 }
+
+void Atividade3()
+{
+    Conta conta = new Conta() { Saldo = 0 };
+    bool sairAt3 = false;
+    while (!sairAt3)
+    {
+        ContaExercicio3? opcaoAt3 = SelecionarOpcao<ContaExercicio3>();
+        switch (opcaoAt3)
+        {
+            case ContaExercicio3.Depositar:
+                Console.Clear();
+                conta.Depositar();
+                conta.ExibirSaldo();
+                PausaParaLer();
+                break;
+            case ContaExercicio3.Sacar:
+                Console.Clear();
+                conta.Sacar();
+                conta.ExibirSaldo();
+                PausaParaLer();
+                break;
+            case ContaExercicio3.Sair:
+                Console.WriteLine("\nVoltando ao menu principal...");
+                sairAt3 = true;
+                break;
+            case null:
+                Console.WriteLine("\nVoltando ao menu principal...");
+                sairAt3 = true;
+                break;
+        }
+    }
+
+}
 #endregion
 
 #region Programa Principal
@@ -55,7 +89,11 @@ while(!sair)
             Atividade2();
             PausaParaLer();
             break;
-
+        case Exercicios.Exercicio3:
+            Console.Clear();
+            Atividade3();
+            PausaParaLer();
+            break;
         case Exercicios.Sair:
             Console.WriteLine("\nObrigado pela visita");
             sair = true;
