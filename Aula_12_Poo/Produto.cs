@@ -6,7 +6,9 @@ namespace Aula_12_Poo
 {
     internal class Produto
     {
-        private string _nome {  get; set; }
+
+        #region Propriedades
+        private string _nome { get; set; }
 
         public string Nome
         {
@@ -24,10 +26,16 @@ namespace Aula_12_Poo
             }
         }
 
+        #endregion
+
+        #region Métodos
+
         public void ExibirNome()
         {
             Console.WriteLine($"O nome do produto é: {Nome}");
         }
+
+        #endregion
     }
 }
 

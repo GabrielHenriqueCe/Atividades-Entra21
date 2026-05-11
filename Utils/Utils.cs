@@ -1,22 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Reflection;
+using Utilities;
+using static Utilities.Helper;
 
 namespace Utilities
 {
     public class Utils
     {
-        public static string GetDescricao(Enum valor)
-        {
-            FieldInfo field = valor.GetType().GetField(valor.ToString());
-
-            DescriptionAttribute attr =
-                field.GetCustomAttribute<DescriptionAttribute>();
-
-            return attr?.Description ?? valor.ToString();
-        }
-
-        // =================== OPÇÕES DE LEITURA ===================
+        #region Leitura de Input
 
         public static string LerStringObrigatoria(string mensagem)
         {
@@ -31,6 +23,82 @@ namespace Utilities
             }
 
             return input;
+        }
+
+        public static int LerInt(string mensagem, int min, int max)
+        {
+            Console.Write(mensagem);
+
+            string input = Console.ReadLine();
+
+            int valor;
+
+            while (!int.TryParse(input, out valor) ||
+                   valor < min ||
+                   valor > max)
+            {
+                Console.Write("Entrada inválida. Digite um número válido: ");
+                input = Console.ReadLine();
+            }
+
+            return valor;
+        }
+
+        public static decimal LerDecimal(string mensagem, decimal min, decimal max)
+        {
+            Console.Write(mensagem);
+
+            string input = Console.ReadLine();
+
+            decimal valor;
+
+            while (!decimal.TryParse(input, out valor) ||
+                   valor < min ||
+                   valor > max)
+            {
+                Console.Write("Entrada inválida. Digite um número válido: ");
+                input = Console.ReadLine();
+            }
+
+            return valor;
+        }
+
+        public static byte LerByte(string mensagem, byte min, byte max)
+        {
+            Console.Write(mensagem);
+
+            string input = Console.ReadLine();
+
+            byte valor;
+
+            while (!byte.TryParse(input, out valor) ||
+                   valor < min ||
+                   valor > max)
+            {
+                Console.Write("Entrada inválida. Digite um número válido: ");
+                input = Console.ReadLine();
+            }
+
+            return valor;
+        }
+
+        public static float LerFloat(string mensagem, float min, float max)
+        {
+            Console.Write(mensagem);
+
+            string input = Console.ReadLine();
+
+            float valor;
+
+            while (!float.TryParse(input, out valor) ||
+                   valor < min ||
+                   valor > max)
+            {
+                Console.Write("Entrada inválida. Digite um número válido: ");
+                input = Console.ReadLine();
+            }
+
+            return valor;
         }
 
         public static T? LerOpcao<T>() where T : struct
@@ -56,7 +124,9 @@ namespace Utilities
             }
         }
 
-        // =================== MENU COM CURSOR ===================
+        #endregion
+
+        #region Menu com Cursor
 
         public static int SelecionarComCursorAux(
             int atual,
@@ -169,7 +239,9 @@ namespace Utilities
             }
         }
 
-        // =================== OUTROS ===================
+        #endregion
+
+        #region Utilitários
 
         public static void PausaParaLer()
         {
@@ -184,72 +256,6 @@ namespace Utilities
             Console.WriteLine($"{mensagem}\n");
         }
 
-        // =================== LEITURA NUMÉRICA ===================
-
-        public static decimal LerDecimal(
-            string mensagem,
-            decimal min,
-            decimal max)
-        {
-            Console.Write(mensagem);
-
-            string input = Console.ReadLine();
-
-            decimal valor;
-
-            while (!decimal.TryParse(input, out valor) ||
-                   valor < min ||
-                   valor > max)
-            {
-                Console.Write("Entrada inválida. Digite um número válido: ");
-                input = Console.ReadLine();
-            }
-
-            return valor;
-        }
-
-        public static byte LerByte(
-            string mensagem,
-            byte min,
-            byte max)
-        {
-            Console.Write(mensagem);
-
-            string input = Console.ReadLine();
-
-            byte valor;
-
-            while (!byte.TryParse(input, out valor) ||
-                   valor < min ||
-                   valor > max)
-            {
-                Console.Write("Entrada inválida. Digite um número válido: ");
-                input = Console.ReadLine();
-            }
-
-            return valor;
-        }
-
-        public static float LerFloat(
-            string mensagem,
-            float min,
-            float max)
-        {
-            Console.Write(mensagem);
-
-            string input = Console.ReadLine();
-
-            float valor;
-
-            while (!float.TryParse(input, out valor) ||
-                   valor < min ||
-                   valor > max)
-            {
-                Console.Write("Entrada inválida. Digite um número válido: ");
-                input = Console.ReadLine();
-            }
-
-            return valor;
-        }
+        #endregion
     }
 }
