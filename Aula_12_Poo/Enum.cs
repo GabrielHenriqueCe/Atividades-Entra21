@@ -23,7 +23,7 @@ namespace Aula_12_Poo
         Exercicio5,
 
         [Description("Exercício Extra - Desafio")]
-        ExercicioExtra,
+        ExercicioDesafio,
 
         [Description("Sair - Esc")]
         Sair
@@ -36,6 +36,19 @@ namespace Aula_12_Poo
 
         [Description("Sacar")]
         Sacar = 2,
+
+        [Description("Sair - Esc")]
+        Sair
+    }
+
+    enum ContaExercicioDesafio
+    {
+        [Description("Cadastrar Usuário")]
+        Cadastrar = 1,
+
+        [Description("Listar Usuários")]
+        Listar = 2,
+
         [Description("Sair - Esc")]
         Sair
     }
