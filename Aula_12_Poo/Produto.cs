@@ -17,7 +17,7 @@ namespace Aula_12_Poo
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    Console.WriteLine("O nome do produto não pode ser vazio. Por favor, insira um nome válido.");
+                    throw new ArgumentException("O nome do produto não pode ser vazio. Por favor, insira um nome válido.");
                 }
                 else
                 {

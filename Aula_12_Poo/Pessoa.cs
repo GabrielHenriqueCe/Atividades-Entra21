@@ -8,6 +8,11 @@ namespace Aula_12_Poo
 {
     internal class Pessoa
     {
+        public Pessoa(string nome, int idade)
+        {
+            Nome = nome;
+            Idade = idade;
+        }
         #region Propriedades
         private string _nome { get; set; }
         private int _idade { get; set; }
@@ -19,7 +24,7 @@ namespace Aula_12_Poo
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    Console.WriteLine("O nome da pessoa não pode ser vazio. Por favor, insira um nome válido.");
+                    throw new ArgumentException("O nome da pessoa não pode ser vazio. Por favor, insira um nome válido.");
                 }
                 else
                 { _nome = value; }
@@ -44,17 +49,11 @@ namespace Aula_12_Poo
 
         #region Métodos
 
-        public void SolicitarIdade()
+        public virtual void SolicitarIdade()
         {
-            Console.Write($"Digite a Idade de {Nome}: ");
-            int idade;
-            while (!int.TryParse(Console.ReadLine(), out idade))
-            {
-                Console.Write("Entrada inválida. Digite um número inteiro: ");
-            }
-            Idade = idade;
+            Idade = LerInt($"Digite a Idade de {Nome}: ");
         }
-        public void ExibirInformacoes()
+        public virtual void ExibirInformacoes()
         {
             Console.WriteLine($"Nome: {Nome}    Idade: {Idade} anos");
         }

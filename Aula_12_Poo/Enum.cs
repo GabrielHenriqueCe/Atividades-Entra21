@@ -16,6 +16,9 @@ namespace Aula_12_Poo
         [Description("Exercício 3 - Classe Conta - Encapsular saldo")]
         Exercicio3,
 
+        [Description("Exercício 4 - Classe Aluno - Utilizar property")]
+        Exercicio4,
+
         [Description("Exercício Extra - Desafio")]
         ExercicioExtra,
 
