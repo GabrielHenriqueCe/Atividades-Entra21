@@ -90,6 +90,38 @@ void Atividade4()
     aluno.ExibirInformacoes();
 }
 
+void Atividade5()
+{
+    Carro carro = new Carro() { Marca = "Renault", Modelo = "Kwid", VelocidadeAtual = 0 };
+
+    bool velocidadeValida = false;
+    int selecionado = 0;
+    while (!velocidadeValida)
+    {
+        string[] opcoes = { $"1 - Acelerar", "2 - Frear", "3 - Sair", $"{carro.Velocimetro()}" };
+
+        string? opcao = SelecionarComCursor(opcoes, out selecionado, selecionado);
+        switch (opcao)
+        {
+            case "1 - Acelerar":
+                Console.Clear();
+                carro.Acelerar();
+                break;
+            case "2 - Frear":
+                Console.Clear();
+                carro.Frear();
+                break;
+            case "3 - Sair":
+                Console.WriteLine("\nVoltando ao menu principal...");
+                velocidadeValida = true;
+                break;
+            case null:
+                velocidadeValida = true;
+                break;
+        }
+    }
+}
+
 #endregion
 
 #region Programa Principal
@@ -118,6 +150,11 @@ while(!sair)
         case Exercicios.Exercicio4:
             Console.Clear();
             Atividade4();
+            PausaParaLer();
+            break;
+        case Exercicios.Exercicio5:
+            Console.Clear();
+            Atividade5();
             PausaParaLer();
             break;
         case Exercicios.Sair:
