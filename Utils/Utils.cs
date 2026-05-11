@@ -25,7 +25,7 @@ namespace Utilities
             return input;
         }
 
-        public static int LerInt(string mensagem, int min, int max)
+        public static int LerInt(string mensagem, int min = int.MinValue, int max = int.MaxValue)
         {
             Console.Write(mensagem);
 
@@ -44,7 +44,7 @@ namespace Utilities
             return valor;
         }
 
-        public static decimal LerDecimal(string mensagem, decimal min, decimal max)
+        public static decimal LerDecimal(string mensagem, decimal min = decimal.MinValue, decimal max = decimal.MaxValue)
         {
             Console.Write(mensagem);
 
@@ -63,7 +63,7 @@ namespace Utilities
             return valor;
         }
 
-        public static byte LerByte(string mensagem, byte min, byte max)
+        public static byte LerByte(string mensagem, byte min = byte.MinValue, byte max = byte.MaxValue)
         {
             Console.Write(mensagem);
 
@@ -82,7 +82,7 @@ namespace Utilities
             return valor;
         }
 
-        public static float LerFloat(string mensagem, float min, float max)
+        public static float LerFloat(string mensagem, float min = float.MinValue, float max = float.MaxValue)
         {
             Console.Write(mensagem);
 

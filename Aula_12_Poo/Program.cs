@@ -17,7 +17,7 @@ void Atividade1()
 
 void Atividade2()
 {
-    Pessoa pessoa = new Pessoa() { Nome = "Gabriel", Idade = 30 };
+    Pessoa pessoa = new Pessoa("Gabriel", 30);
 
     bool idadeValida = false;
     while (!idadeValida)
@@ -67,8 +67,29 @@ void Atividade3()
                 break;
         }
     }
-
 }
+
+void Atividade4()
+{
+    Aluno aluno = new Aluno("Gabriel", 30, "Engenharia de Software", 0);
+
+    bool notaValida = false;
+    while (!notaValida)
+    {
+        try
+        {
+            aluno.SolicitarNota();
+            notaValida = true;
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+    aluno.ExibirInformacoes();
+}
+
 #endregion
 
 #region Programa Principal
@@ -92,6 +113,11 @@ while(!sair)
         case Exercicios.Exercicio3:
             Console.Clear();
             Atividade3();
+            PausaParaLer();
+            break;
+        case Exercicios.Exercicio4:
+            Console.Clear();
+            Atividade4();
             PausaParaLer();
             break;
         case Exercicios.Sair:
