@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Utilities;
 using static Utilities.Utils;
@@ -43,7 +44,11 @@ namespace Aula_12_Poo
             }
         }
 
-        public Aluno() : base() { }
+        public Aluno(string nome, int idade, string curso, float nota) : base(nome, idade)
+        {
+            Curso = curso;
+            Nota = nota;
+        }
 
         #endregion
 

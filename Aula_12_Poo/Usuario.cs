@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aula_12_Poo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -27,36 +28,18 @@ namespace Aula_12_Poo
                 }
             }
         }
-        public Usuario() : base() { }
+        public Usuario(string nome, int idade, string email) : base(nome, idade)
+        {
+            Email = email;
+        }
 
         #endregion
 
         #region Metodos
-        public void Cadastrar()
-        {
-            Nome = LerStringObrigatoria("Digite o nome do usuário: ");
-            Idade = LerInt($"Digite a Idade do usuário: ");
-            Email = LerStringObrigatoria("Digite o email do usuário a assinatura será @C#.com.br: ");
-        }
 
-        public void Listar(List<Usuario> usuarios)
+        public override void ExibirInformacoes()
         {
-            if (usuarios == null || usuarios.Count == 0)
-            {
-                Console.WriteLine("Nenhum usuário cadastrado.");
-                return;
-            }
-
-            foreach (var usuario in usuarios)
-            {
-                Console.WriteLine($"Nome: {usuario.Nome},   Idade: {usuario.Idade},     Email: {usuario.Email}@C#.com.br ");
-            }
-        }
-
-        public void InformarSituacao(Usuario usuarios)
-        {
-            base.ExibirInformacoes();
-            Console.WriteLine($"Email: {usuarios.Email}@C#.com.br ");
+            Console.WriteLine($"Nome: {Nome}   Idade: {Idade} anos   Email: {Email}@C#.com.br");
         }
 
         #endregion
