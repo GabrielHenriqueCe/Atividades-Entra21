@@ -25,6 +25,9 @@ namespace Aula_12_Poo
         [Description("Exercício Extra - Desafio")]
         ExercicioDesafio,
 
+        [Description("Teste")]
+        Teste,
+
         [Description("Sair - Esc")]
         Sair
     }

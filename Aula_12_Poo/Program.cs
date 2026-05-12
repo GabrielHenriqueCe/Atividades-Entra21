@@ -157,6 +157,39 @@ void AtividadeDesafio()
     }
 }
 
+void Teste()
+{
+
+    Carro carro = new Carro() { Marca = "Renault", Modelo = "Kwid", VelocidadeAtual = 0 };
+    bool velocidadeValida = false;
+    int selecionado = 0;
+    while (!velocidadeValida)
+    {
+        Console.Clear();
+        Console.WriteLine("W acelerar");
+        Console.WriteLine("S para desacelerar");
+        Console.WriteLine("Esc para Sair");
+        Console.WriteLine(carro.Velocimetro());
+
+        ConsoleKeyInfo tecla = Console.ReadKey(true);
+        switch (tecla.Key)
+        {
+            case ConsoleKey.W:
+                Console.Clear();
+                carro.Acelerar();
+                break;
+            case ConsoleKey.S:
+                Console.Clear();
+                carro.Frear();
+                break;
+            case ConsoleKey.Escape:
+                Console.WriteLine("\nVoltando ao menu principal...");
+                velocidadeValida = true;
+                break;
+        }
+    }
+}
+
 #endregion
 
 #region Programa Principal
@@ -195,6 +228,11 @@ while(!sair)
         case Exercicios.ExercicioDesafio:
             Console.Clear();
             AtividadeDesafio();
+            PausaParaLer();
+            break;
+        case Exercicios.Teste:
+            Console.Clear();
+            Teste();
             PausaParaLer();
             break;
         case Exercicios.Sair:
