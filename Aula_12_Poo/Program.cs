@@ -17,7 +17,7 @@ void Atividade1()
 
 void Atividade2()
 {
-    Pessoa pessoa = new Pessoa() { Nome = "Gabriel", Idade = 30 };
+    Pessoa pessoa = new Pessoa("Gabriel", 30);
 
     bool idadeValida = false;
     while (!idadeValida)
@@ -71,7 +71,7 @@ void Atividade3()
 
 void Atividade4()
 {
-    Aluno aluno = new Aluno() { Nome = "Gabriel", Idade = 30, Curso = "Engenharia de Software", Nota = 0 };
+    Aluno aluno = new Aluno("Gabriel", 30, "Engenharia de Software", 0);
 
     bool notaValida = false;
     while (!notaValida)
@@ -124,8 +124,7 @@ void Atividade5()
 
 void AtividadeDesafio()
 {
-    List<Usuario> usuarios = new List<Usuario>();
-    Usuario usuario = new Usuario();
+    GerenciadorUsuarios gerenciador = new GerenciadorUsuarios();
 
     bool sairAtDesafio = false;
     while (!sairAtDesafio)
@@ -135,14 +134,13 @@ void AtividadeDesafio()
         {
             case ContaExercicioDesafio.Cadastrar:
                 Console.Clear();
-                usuario.Cadastrar();
-                usuarios.Add(usuario);
-                usuario.InformarSituacao(usuarios[^1]);
+                gerenciador.Cadastrar();
+                gerenciador.Listar();
                 PausaParaLer();
                 break;
             case ContaExercicioDesafio.Listar:
                 Console.Clear();
-                usuario.Listar(usuarios);
+                gerenciador.Listar();
                 PausaParaLer();
                 break;
             case ContaExercicioDesafio.Sair:

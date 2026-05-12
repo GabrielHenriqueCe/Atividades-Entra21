@@ -8,7 +8,11 @@ namespace Aula_12_Poo
 {
     internal class Pessoa
     {
-        public Pessoa() { }
+        public Pessoa(string nome, int idade)
+        {
+            Nome = nome;
+            Idade = idade;
+        }
 
         #region Propriedades
         private string _nome { get; set; }
