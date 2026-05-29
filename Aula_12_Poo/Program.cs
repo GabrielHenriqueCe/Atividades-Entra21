@@ -166,7 +166,7 @@ void Teste()
         Console.Clear();
         Console.WriteLine("W acelerar");
         Console.WriteLine("S para desacelerar");
-        Console.WriteLine("Esc para Sair");
+        Console.WriteLine("X para Sair");
         Console.WriteLine(carro.Velocimetro());
 
         ConsoleKeyInfo tecla = Console.ReadKey(true);
@@ -180,7 +180,7 @@ void Teste()
                 Console.Clear();
                 carro.Frear();
                 break;
-            case ConsoleKey.Escape:
+            case ConsoleKey.X:
                 Console.WriteLine("\nVoltando ao menu principal...");
                 velocidadeValida = true;
                 break;
