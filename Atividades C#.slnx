@@ -5,6 +5,7 @@
     <Project Path="Aula_12_Poo/Aula_12_Poo.csproj" Id="20a5f0dd-5236-4485-86aa-b0dae721c8f2" />
     <Project Path="Aula_14_Polimorfismo/Aula_14_Polimorfismo.csproj" Id="eab464b1-fd53-4728-99ce-6582fd08f571" />
     <Project Path="Aula_15/Aula_15.csproj" Id="9e2b23ac-d1c8-4ae5-9ee6-561fd52911e3" />
+    <Project Path="Aula_16/Aula_16.csproj" Id="799482ee-125e-45a3-8307-f614eb1c0f12" />
   </Folder>
   <Project Path="Utils/Utilities.csproj" Id="b87c6318-52d9-4b9b-8cd1-cb4f3dcdb58a" />
 </Solution>
