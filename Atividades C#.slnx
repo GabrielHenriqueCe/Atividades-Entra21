@@ -12,6 +12,7 @@
       <Build Solution="Debug|*" Project="false" />
     </Project>
     <Project Path="Aula_17/Aula_17.csproj" Id="7c397e03-0c38-4e2c-93e3-7e5f5fddadf5" />
+    <Project Path="Aula_18/Aula_18.csproj" Id="274800e1-d711-48e4-a167-26951346e206" />
     <Project Path="Aula_19/Aula_19.csproj" Id="e8a13bc9-1f64-46f8-a669-576cf6a8bf52" />
   </Folder>
   <Project Path="Utils/Utilities.csproj" Id="b87c6318-52d9-4b9b-8cd1-cb4f3dcdb58a" />
