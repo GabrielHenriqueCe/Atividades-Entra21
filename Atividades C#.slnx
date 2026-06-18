@@ -3,6 +3,7 @@
     <Project Path="Aula 10 Poo/Aula_10_Poo.csproj" />
     <Project Path="Aula_11_Poo/Aula_11_Poo.csproj" Id="41c264be-95db-4424-aa36-a3c509d37105" />
     <Project Path="Aula_12_Poo/Aula_12_Poo.csproj" Id="20a5f0dd-5236-4485-86aa-b0dae721c8f2" />
+    <Project Path="Aula_13/Aula_13.csproj" Id="96cb9694-6752-4dbf-9fe2-b2ef20ec8f21" />
     <Project Path="Aula_14_Polimorfismo/Aula_14_Polimorfismo.csproj" Id="eab464b1-fd53-4728-99ce-6582fd08f571" />
   </Folder>
   <Folder Name="/Modulo 8/">
@@ -11,6 +12,7 @@
       <Build Solution="Debug|*" Project="false" />
     </Project>
     <Project Path="Aula_17/Aula_17.csproj" Id="7c397e03-0c38-4e2c-93e3-7e5f5fddadf5" />
+    <Project Path="Aula_19/Aula_19.csproj" Id="e8a13bc9-1f64-46f8-a669-576cf6a8bf52" />
   </Folder>
   <Project Path="Utils/Utilities.csproj" Id="b87c6318-52d9-4b9b-8cd1-cb4f3dcdb58a" />
 </Solution>
