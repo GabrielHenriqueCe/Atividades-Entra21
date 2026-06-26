@@ -24,5 +24,15 @@ namespace Aula_20.Controllers
 
             return Content(_produtos[id]);
         }
+
+        public IActionResult Antiga()
+        {
+            return RedirectToAction("Nova");
+        }
+
+        public IActionResult Nova()
+        {
+            return Content("Você está na versão nova!");
+        }
     }
 }
