@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Aula_20.Controllers
+namespace Aula_21.Controllers
 {
     [Route("status")]
     public class StatusController : Controller

@@ -1,8 +1,8 @@
-using Aula_20.Models;
+using Aula_21.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Aula_20.Controllers
+namespace Aula_21.Controllers
 {
     public class HomeController : Controller
     {
