@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace MeuSite.Controllers
+namespace MVC.Controllers
 {
     public class SaudacaoController : Controller
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Aula_21.Controllers
+namespace MVC.Controllers
 {
     public class ProdutosController : Controller
     {

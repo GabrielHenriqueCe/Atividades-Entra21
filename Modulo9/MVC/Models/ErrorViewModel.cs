@@ -1,4 +1,4 @@
-namespace Aula_21.Models
+namespace MVC.Models
 {
     public class ErrorViewModel
     {
