@@ -1,8 +1,8 @@
-using Aula_21.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCoreMvcCompleto.Models;
+using Microsoft.AspNetCore.AspNetCoreMvcCompleto;
 using System.Diagnostics;
 
-namespace Aula_21.Controllers
+namespace AspNetCoreMvcCompleto.Controllers
 {
     public class HomeController : Controller
     {

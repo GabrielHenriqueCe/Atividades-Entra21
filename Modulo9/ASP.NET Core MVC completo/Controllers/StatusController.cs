@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.AspNetCoreMvcCompleto;
 
-namespace Aula_21.Controllers
+namespace AspNetCoreMvcCompleto.Controllers
 {
     [Route("status")]
     public class StatusController : Controller

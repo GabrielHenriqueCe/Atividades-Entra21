@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.AspNetCoreMvcCompleto;
 
-namespace MeuSite.Controllers
+namespace AspNetCoreMvcCompleto.Controllers
 {
     public class SaudacaoController : Controller
     {

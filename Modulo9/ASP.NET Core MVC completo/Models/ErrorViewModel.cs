@@ -1,4 +1,4 @@
-namespace Aula_21.Models
+﻿namespace AspNetCoreMvcCompleto.Models
 {
     public class ErrorViewModel
     {
