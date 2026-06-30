@@ -3,7 +3,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace MVC.Migrations
+namespace AspNetCoreMvcCompleto.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

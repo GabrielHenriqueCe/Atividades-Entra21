@@ -1,7 +1,7 @@
-﻿using MVC.Models;
+﻿using AspNetCoreMvcCompleto.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MVC.Infra
+namespace AspNetCoreMvcCompleto.Infra
 {
     public class AppDbContent : DbContext
     {
