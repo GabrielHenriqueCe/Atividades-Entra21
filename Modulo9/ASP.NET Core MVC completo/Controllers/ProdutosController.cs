@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.AspNetCoreMvcCompleto;
-
+﻿using Microsoft.AspNetCore.Mvc;
 namespace AspNetCoreMvcCompleto.Controllers
 {
     public class ProdutosController : Controller
