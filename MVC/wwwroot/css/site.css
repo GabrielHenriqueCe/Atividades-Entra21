@@ -1,0 +1,188 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   Tech Green Theme — site.css (Blazor default, restilizado)
+   Inspirado na referência: mono, grid sutil, corner-brackets,
+   glow verde, cantos técnicos.
+   ========================================================= */
+
+:root {
+    --bg: #0b0f0d;
+    --bg-elev: #101713;
+    --bg-elev-2: #16211a;
+    --line: #22362a;
+    --line-soft: #182a1f;
+    --ink: #e6fff3;
+    --ink-dim: #8fb8a3;
+    --ink-mute: #4d6e5a;
+    --accent: #2fe89b;
+    --accent-soft: #2fe89b1f;
+    --accent-dim: #16d488;
+    --mono: 'JetBrains Mono', ui-monospace, 'Consolas', monospace;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    line-height: 1.6;
+    background-image: linear-gradient(rgba(47,232,155,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(47,232,155,0.03) 1px, transparent 1px), radial-gradient(circle at 15% 0%, #142019 0%, transparent 45%);
+    background-size: 48px 48px, 48px 48px, auto;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+/* --- foco: brilho verde com "corner bracket" estilo tech --- */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.1rem var(--bg), 0 0 0 0.2rem var(--accent), 0 0 14px 0 rgba(47, 232, 155, 0.55);
+}
+
+/* --- botões --- */
+.btn {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    border-radius: 2px;
+    transition: all 0.2s ease;
+}
+
+    .btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translate(-2px, -2px);
+        box-shadow: 3px 3px 0 var(--line);
+    }
+
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+}
+
+    .btn-primary:hover {
+        background: var(--bg);
+        color: var(--accent);
+        box-shadow: 3px 3px 0 var(--accent);
+    }
+
+.btn-link {
+    color: var(--accent-dim);
+}
+
+    .btn-link:hover {
+        color: var(--accent);
+    }
+
+/* --- formulários --- */
+.form-control,
+.form-select {
+    background-color: var(--bg-elev);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    border-radius: 2px;
+}
+
+    .form-control:focus {
+        background-color: var(--bg-elev);
+        color: var(--ink);
+        border-color: var(--accent);
+    }
+
+.form-check-input {
+    background-color: var(--bg-elev);
+    border: 1px solid var(--line);
+}
+
+    .form-check-input:checked {
+        background-color: var(--accent);
+        border-color: var(--accent);
+    }
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--ink-mute);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
+}
+
+.form-floating > label {
+    color: var(--ink-dim);
+}
+
+/* --- links --- */
+a {
+    color: var(--accent-dim);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    a:hover {
+        color: var(--accent);
+    }
+
+/* --- validação (Blazor EditForm) --- */
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid var(--accent);
+}
+
+.invalid {
+    outline: 1px solid #ff5c5c;
+}
+
+.validation-message {
+    color: #ff8c8c;
+    font-size: 0.8rem;
+}
+
+/* --- scrollbar --- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-elev);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--line);
+    border-radius: 6px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-dim);
+    }

@@ -1,8 +1,8 @@
-﻿using AspNetCoreMvcCompleto.Models;
 using Microsoft.AspNetCore.Mvc;
+using MVC.Models;
 using System.Diagnostics;
 
-namespace AspNetCoreMvcCompleto.Controllers
+namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
@@ -11,7 +11,7 @@ namespace AspNetCoreMvcCompleto.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult SobreMim()
         {
             return View();
         }

@@ -16,7 +16,7 @@
     <Project Path="Modulo8/Aula_19/Aula_19.csproj" Id="e8a13bc9-1f64-46f8-a669-576cf6a8bf52" />
   </Folder>
   <Folder Name="/Modulo 9/">
-    <Project Path="Modulo9/ASP.NET Core MVC completo/AspNetCoreMvcCompleto.csproj" Id="a8d442b8-04bd-4215-8ba4-b6415e1248d2" />
+    <Project Path="MVC/MVC.csproj" Id="7af86fa1-55fb-45a6-8275-5108f4008846" />
   </Folder>
   <Project Path="Utils/Utilities.csproj" Id="b87c6318-52d9-4b9b-8cd1-cb4f3dcdb58a" />
 </Solution>
