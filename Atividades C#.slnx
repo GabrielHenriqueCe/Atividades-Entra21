@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Modulo 10/">
+    <Project Path="RestFul/RestFul.csproj" Id="1792c00a-f8ed-44ff-92aa-eddc149132ca" />
+  </Folder>
   <Folder Name="/Modulo 7/">
     <Project Path="Modulo7/Aula 10 Poo/Aula_10_Poo.csproj" />
     <Project Path="Modulo7/Aula_11_Poo/Aula_11_Poo.csproj" Id="41c264be-95db-4424-aa36-a3c509d37105" />
