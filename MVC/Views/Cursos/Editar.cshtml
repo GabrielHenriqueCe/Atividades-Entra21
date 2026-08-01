@@ -1,0 +1,17 @@
+﻿@model MVC.Models.Curso
+
+<h1>Editar Curso</h1>
+
+<form asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label>Nome</label>
+        <input type="text" asp-for="Nome" />
+    </div>
+    <div>
+        <label>Carga Horária</label>
+        <input type="number" asp-for="CargaHoraria" />
+        <span asp-validation-for="CargaHoraria" style="color: red;"></span>
+    </div>
+    <button type="submit">Salvar</button>
+</form>

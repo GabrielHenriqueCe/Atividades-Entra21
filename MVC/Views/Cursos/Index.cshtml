@@ -1,0 +1,65 @@
+﻿@model List<MVC.Models.Curso>
+
+<h1>Cursos</h1>
+
+<p>Total de cursos cadastrados: @ViewBag.Total</p>
+
+@if (TempData["Mensagem"] != null)
+{
+    <p style="color: var(--accent);">@TempData["Mensagem"]</p>
+}
+
+<p>
+    <a asp-action="Criar">Cadastrar novo curso</a>
+</p>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 16px;
+        background-color: var(--bg-elev);
+    }
+
+    th, td {
+        border: 1px solid var(--line);
+        padding: 10px 16px;
+        text-align: left;
+        color: var(--ink);
+    }
+
+    th {
+        background-color: var(--bg-elev-2);
+        color: var(--accent);
+    }
+
+    tr:nth-child(even) {
+        background-color: var(--bg-elev-2);
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Carga Horária</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var curso in Model)
+        {
+            <tr>
+                <td>@curso.Id</td>
+                <td>@curso.Nome</td>
+                <td>@curso.CargaHoraria</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@curso.Id">Editar</a>
+                    |
+                    <a asp-action="Excluir" asp-route-id="@curso.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,21 @@
+﻿@model MVC.Models.Curso
+
+<h1>Confirmar exclusão</h1>
+
+<p>Tem certeza que deseja excluir este curso?</p>
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <td>@Model.Nome</td>
+    </tr>
+    <tr>
+        <th>Carga Horária</th>
+        <td>@Model.CargaHoraria</td>
+    </tr>
+</table>
+
+<form asp-action="ExcluirConfirmado" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit">Confirmar exclusão</button>
+</form>
