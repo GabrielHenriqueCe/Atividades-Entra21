@@ -52,11 +52,10 @@
                 <td>@aluno.Id</td>
                 <td>@aluno.Nome</td>
                 <td>@aluno.Email</td>
-                <td>@aluno.DataNascimento.ToString("dd/MM/yyyy")</td>
+                <td>@aluno.DataNascimento?.ToString("dd/MM/yyyy")</td>
                 <td>@aluno.Telefone</td>
                 <td>
-                    <a asp-action="Editar" asp-route-id="@aluno.Id">Editar</a>
-                    |
+                    <a asp-action="Editar" asp-route-id="@aluno.Id">Editar</a><br />
                     <a asp-action="Excluir" asp-route-id="@aluno.Id">Excluir</a>
                 </td>
             </tr>
