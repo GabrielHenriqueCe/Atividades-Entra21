@@ -1,0 +1,65 @@
+﻿@model List<MVC.Models.Aluno>
+
+<h1>Alunos</h1>
+<form asp-action="Index" method="get">
+    <input type="text" name="busca" placeholder="Buscar por nome..." value="@Context.Request.Query["busca"]" />
+    <button type="submit">Buscar</button>
+</form>
+<p>
+    <a asp-action="Criar">Cadastrar novo aluno</a>
+</p>
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 16px;
+        background-color: var(--bg-elev);
+    }
+
+    th, td {
+        border: 1px solid var(--line);
+        padding: 10px 16px;
+        text-align: left;
+        color: var(--ink);
+    }
+
+    th {
+        background-color: var(--bg-elev-2);
+        color: var(--accent);
+    }
+
+    tr:nth-child(even) {
+        background-color: var(--bg-elev-2);
+    }
+</style>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Data de Nascimento</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var aluno in Model)
+        {
+            <tr>
+                <td>@aluno.Id</td>
+                <td>@aluno.Nome</td>
+                <td>@aluno.Email</td>
+                <td>@aluno.DataNascimento.ToString("dd/MM/yyyy")</td>
+                <td>@aluno.Telefone</td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@aluno.Id">Editar</a>
+                    |
+                    <a asp-action="Excluir" asp-route-id="@aluno.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,16 @@
+﻿@model MVC.Models.Curso
+
+<h1>Cadastrar Curso</h1>
+
+<form asp-action="Criar" method="post">
+    <div>
+        <label>Nome</label>
+        <input type="text" asp-for="Nome" />
+    </div>
+    <div>
+        <label>Carga Horária</label>
+        <input type="number" asp-for="CargaHoraria" />
+        <span asp-validation-for="CargaHoraria" style="color: red;"></span>
+    </div>
+    <button type="submit">Salvar</button>
+</form>
