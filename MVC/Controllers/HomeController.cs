@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
 using MVC.Services;
@@ -30,6 +31,18 @@ namespace MVC.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Authorize(Roles = "Administrador")]
+        public IActionResult PainelAdmin()
+        {
+            return Content("Bem-vindo ao painel administrativo!");
+        }
+
+        [HttpGet("Acesso-Negado")]
+        public IActionResult AcessoNegado()
+        {
+            return View();
         }
     }
 }
