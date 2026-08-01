@@ -1,0 +1,21 @@
+﻿@model MVC.Models.Produto
+
+<h1>Confirmar exclusão</h1>
+
+<p>Tem certeza que deseja excluir este produto?</p>
+
+<table>
+    <tr>
+        <th>Nome</th>
+        <td>@Model.Nome</td>
+    </tr>
+    <tr>
+        <th>Preço</th>
+        <td>@Model.Preco.ToString("C")</td>
+    </tr>
+</table>
+
+<form asp-action="Excluir" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit">Confirmar exclusão</button>
+</form>

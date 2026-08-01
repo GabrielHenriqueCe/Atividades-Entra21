@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC.Data;
 using MVC.Models;
 
 namespace MVC.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     public class ProdutosController : Controller
     {
@@ -20,17 +22,9 @@ namespace MVC.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet("lista-fixa")]
         public IActionResult ListaFixa() => Json(lista);
-
-        [HttpGet("{id}")]
-        public IActionResult Detalhes(int id)
-        {
-            if (id < 0 || id >= lista.Count)
-                return NotFound();
-
-            return Content($"Produto: {lista[id]}");
-        }
 
         [HttpGet("antiga")]
         public IActionResult Antiga() => RedirectToAction("Nova");
@@ -38,15 +32,21 @@ namespace MVC.Controllers
         [HttpGet("nova")]
         public IActionResult Nova() => Content("Você está na versão nova");
 
-        // READ — listar todos (assíncrono, direto do banco)
+        [AllowAnonymous]
+        [HttpGet("")]
         public async Task<IActionResult> Index()
         {
             var produtos = await _context.Produtos.ToListAsync();
             return View(produtos);
         }
 
-        // CREATE — salvar um novo produto
-        [HttpPost]
+        [HttpGet("criar")]
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        [HttpPost("criar")]
         public async Task<IActionResult> Criar(Produto produto)
         {
             _context.Produtos.Add(produto);
@@ -54,8 +54,16 @@ namespace MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // UPDATE — editar um produto existente
-        [HttpPost]
+        [HttpGet("editar/{id}")]
+        public async Task<IActionResult> Editar(int id)
+        {
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto == null) return NotFound();
+
+            return View(produto);
+        }
+
+        [HttpPost("editar/{id}")]
         public async Task<IActionResult> Editar(int id, Produto dados)
         {
             var produto = await _context.Produtos.FindAsync(id);
@@ -67,9 +75,17 @@ namespace MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // DELETE — remover um produto
-        [HttpPost]
+        [HttpGet("excluir/{id}")]
         public async Task<IActionResult> Excluir(int id)
+        {
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto == null) return NotFound();
+
+            return View(produto);
+        }
+
+        [HttpPost("excluir/{id}")]
+        public async Task<IActionResult> Excluir(int id, Produto dados)
         {
             var produto = await _context.Produtos.FindAsync(id);
             if (produto != null)

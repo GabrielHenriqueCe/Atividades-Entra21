@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVC.Data;
 using MVC.Models;
@@ -6,6 +7,7 @@ using MVC.Services;
 
 namespace MVC.Controllers
 {
+    [Authorize]
     public class CursosController : Controller
     {
         private readonly AppDbContext _context;
@@ -17,7 +19,7 @@ namespace MVC.Controllers
             _calculadora = calculadora;
         }
 
-        // READ — listar, ordenado por CargaHoraria decrescente
+        // Qualquer usuário logado pode ver a listagem
         public async Task<IActionResult> Index()
         {
             var cursos = await _context.Cursos
@@ -29,13 +31,14 @@ namespace MVC.Controllers
             return View(cursos);
         }
 
-        // CREATE
+        [Authorize(Roles = "Professor")]
         [HttpGet]
         public IActionResult Criar()
         {
             return View();
         }
 
+        [Authorize(Roles = "Professor")]
         [HttpPost]
         public async Task<IActionResult> Criar(Curso curso)
         {
@@ -49,26 +52,21 @@ namespace MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // UPDATE
+        [Authorize(Roles = "Professor")]
         [HttpGet]
         public async Task<IActionResult> Editar(int id)
         {
             var curso = await _context.Cursos.FindAsync(id);
-
-            if (curso == null)
-                return NotFound();
-
+            if (curso == null) return NotFound();
             return View(curso);
         }
 
+        [Authorize(Roles = "Professor")]
         [HttpPost]
         public async Task<IActionResult> Editar(int id, Curso dados)
         {
-            if (id != dados.Id)
-                return BadRequest();
-
-            if (!ModelState.IsValid)
-                return View(dados);
+            if (id != dados.Id) return BadRequest();
+            if (!ModelState.IsValid) return View(dados);
 
             _context.Cursos.Update(dados);
             await _context.SaveChangesAsync();
@@ -77,43 +75,38 @@ namespace MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // DELETE
+        [Authorize(Roles = "Professor")]
         [HttpGet]
         public async Task<IActionResult> Excluir(int id)
         {
             var curso = await _context.Cursos.FindAsync(id);
-
-            if (curso == null)
-                return NotFound();
-
+            if (curso == null) return NotFound();
             return View(curso);
         }
 
+        [Authorize(Roles = "Professor")]
         [HttpPost]
         public async Task<IActionResult> ExcluirConfirmado(int id)
         {
             var curso = await _context.Cursos.FindAsync(id);
-
-            if (curso == null)
-                return NotFound();
-
-            _context.Cursos.Remove(curso);
-            await _context.SaveChangesAsync();
+            if (curso != null)
+            {
+                _context.Cursos.Remove(curso);
+                await _context.SaveChangesAsync();
+            }
 
             TempData["Mensagem"] = "Curso excluído com sucesso!";
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Professor")]
         [HttpGet]
         public async Task<IActionResult> Detalhes(int id)
         {
             var curso = await _context.Cursos.FindAsync(id);
-
-            if (curso == null)
-                return NotFound();
+            if (curso == null) return NotFound();
 
             ViewBag.DiasUteis = _calculadora.ConverterParaDiasUteis(curso.CargaHoraria);
-
             return View(curso);
         }
     }
