@@ -26,7 +26,6 @@ namespace MVC.Controllers
             var alunos = await query.ToListAsync();
             return View(alunos);
         }
-
         [HttpGet]
         public IActionResult Criar()
         {
@@ -36,6 +35,9 @@ namespace MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Criar(Aluno aluno)
         {
+            if (!ModelState.IsValid)
+                return View(aluno);
+
             _context.Alunos.Add(aluno);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -57,6 +59,9 @@ namespace MVC.Controllers
         {
             if (id != dados.Id)
                 return BadRequest();
+
+            if (!ModelState.IsValid)
+                return View(dados);
 
             _context.Alunos.Update(dados);
             await _context.SaveChangesAsync();

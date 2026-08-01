@@ -2,16 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using MVC.Data;
 using MVC.Models;
+using MVC.Services;
 
 namespace MVC.Controllers
 {
     public class CursosController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly ICalculadoraCargaHorariaService _calculadora;
 
-        public CursosController(AppDbContext context)
+        public CursosController(AppDbContext context, ICalculadoraCargaHorariaService calculadora)
         {
             _context = context;
+            _calculadora = calculadora;
         }
 
         // READ — listar, ordenado por CargaHoraria decrescente
@@ -99,6 +102,19 @@ namespace MVC.Controllers
 
             TempData["Mensagem"] = "Curso excluído com sucesso!";
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Detalhes(int id)
+        {
+            var curso = await _context.Cursos.FindAsync(id);
+
+            if (curso == null)
+                return NotFound();
+
+            ViewBag.DiasUteis = _calculadora.ConverterParaDiasUteis(curso.CargaHoraria);
+
+            return View(curso);
         }
     }
 }
